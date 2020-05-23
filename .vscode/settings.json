@@ -1,0 +1,11 @@
+{
+    "verilog.ctags.path": "/usr/local/bin/ctags -L \"/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Includes/index.txt\"",
+    "verilog-formatter.istyle.path": "/Users/bugenzhao/Developer/Environment/iStyle",
+    "verilog-formatter.istyle.style": "K&R",
+    "verilog-formatter.istyle.args": "--one-line=keep-statements",
+    "verilog.linting.linter": "iverilog",
+    "verilog.linting.iverilog.arguments": "-y ./ -I ../Includes/ -Wall",
+    "verilog.linting.iverilog.runAtFileLocation": true,
+    "verilog.logging.enabled": true,
+    "systemverilog.documentSymbolsPrecision": "declaration"
+}

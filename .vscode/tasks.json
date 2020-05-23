@@ -1,0 +1,122 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Mkdir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "Build/${relativeFileDirname}/"
+            ],
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Compile",
+            "type": "shell",
+            "dependsOn": [
+                "Mkdir"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "command": "iverilog",
+            "args": [
+                "-Wall",
+                "-o",
+                "${workspaceFolder}/Build/${relativeFileDirname}/${fileBasenameNoExtension}.vvp",
+                "-y",
+                "./",
+                "-I",
+                "../Includes/",
+                "${fileBasename}"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "clear": true,
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Simulate",
+            "type": "shell",
+            "dependsOn": [
+                "Compile"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Build/${relativeFileDirname}/"
+            },
+            "command": "vvp",
+            "args": [
+                "${fileBasenameNoExtension}.vvp"
+            ],
+            "problemMatcher": {
+                "owner": "vvp",
+                "fileLocation": [
+                    "relative",
+                    "${fileDirname}"
+                ],
+                "pattern": {
+                    "regexp": "(ERROR|FATAL|WARNING):\\s+(.*):(\\d+):\\s+(.*)$",
+                    "severity": 1,
+                    "file": 2,
+                    "line": 3,
+                    "message": 4
+                }
+            },
+            "presentation": {
+                "showReuseMessage": false,
+            }
+        },
+        {
+            "label": "Scansion",
+            "type": "shell",
+            "dependsOn": [
+                "Simulate"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Build/${relativeFileDirname}/"
+            },
+            "command": "open",
+            "args": [
+                "/Applications/Scansion.app",
+                "wave.vcd"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "focus": true,
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "trash",
+            "args": [
+                "-rf",
+                "Build/"
+            ],
+            "presentation": {
+                "reveal": "never",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        }
+    ]
+}
