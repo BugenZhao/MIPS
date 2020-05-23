@@ -1,0 +1,2 @@
+/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Includes/ISA.v
+/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Includes/Debug.v
