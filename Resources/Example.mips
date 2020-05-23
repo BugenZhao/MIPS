@@ -1,0 +1,5 @@
+add		$t0, $t1, $t2		# $t0 = $t1 + $t2
+addi	$t0, $t1, 8			# $t0 = $t1 + 8
+and		$t0, $t1, $t2
+and		$t0, $t1, 8
+sub		$t0, $t1, $t2		# $t0 = $t1 - $t2
