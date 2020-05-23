@@ -10,3 +10,15 @@ Disassembly of section .text:
    8:	012a4024 	and	t0,t1,t2
    c:	31280008 	andi	t0,t1,0x8
   10:	012a4022 	sub	t0,t1,t2
+  14:	050101bb 	bgez	t0,0x704
+  18:	00000000 	nop
+  1c:	1d0001bb 	bgtz	t0,0x70c
+  20:	00000000 	nop
+  24:	110901bb 	beq	t0,t1,0x714
+  28:	00000000 	nop
+  2c:	82290378 	lb	t1,888(s1)
+  30:	8e290378 	lw	t1,888(s1)
+  34:	0803640e 	j	0xd9038
+  38:	00000000 	nop
+  3c:	03e00008 	jr	ra
+  40:	00000000 	nop

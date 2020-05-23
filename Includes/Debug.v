@@ -11,3 +11,19 @@
             $dumpfile("wave.vcd"); \
             $dumpvars; \
         end
+
+
+`define EXAMPLE_ADD     32'h012a4020
+`define EXAMPLE_ADDI    32'h21280008
+`define EXAMPLE_AND     32'h012a4024
+`define EXAMPLE_ANDI    32'h31280008
+`define EXAMPLE_SUB     32'h012a4022
+`define EXAMPLE_SLT     32'h0109082a
+`define EXAMPLE_BGEZ    32'h050101bb
+`define EXAMPLE_BGTZ    32'h1d0001bb
+`define EXAMPLE_BEQ     32'h110901bb
+`define EXAMPLE_LB      32'h82290378
+`define EXAMPLE_LW      32'h8e290378
+`define EXAMPLE_J       32'h0803640e
+`define EXAMPLE_JR      32'h03e00008
+`define EXAMPLE_NOP     32'h00000000
