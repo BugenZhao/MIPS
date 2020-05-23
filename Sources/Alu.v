@@ -4,6 +4,7 @@
 // Bugen Zhao 2020
 // -------------------------------------------------------
 
+`timescale 1ns / 1ps
 `include "ISA.v"
 
 module Alu(
@@ -44,10 +45,10 @@ always @(*) begin
         `FUN_JR:
             out = opA + opB; // opB == 0
         `FUN_NO:
-            out = 0;
+            out = 32'hxxxxxx;
 
         default: begin
-            $warning("%m: aluFunct not recognized: %06b", aluFunct);
+            if (aluFunct != 6'bxxxxxx) $warning("%m: aluFunct not recognized: %06b", aluFunct);
             out = 0;
         end
     endcase

@@ -4,18 +4,18 @@
 // Bugen Zhao 2020
 // -------------------------------------------------------
 
+`timescale 1ns / 1ps
 `include "ISA.v"
 
 module AluFunct(
-           input wire [5:0] opcode,
-           input wire [5:0] funct,
+           input wire [5:0] opcode, funct,
            output reg [5:0] aluFunct
        );
 
 always @(*) begin
     case (opcode)
         `OPC_SPECIAL:
-            aluFunct = funct;
+            aluFunct = funct; // JR: add
         `OPC_ADDI:
             aluFunct = `FUN_ADD;
         `OPC_ADDIU:
