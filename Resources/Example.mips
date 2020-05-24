@@ -3,6 +3,8 @@ addi	$t0, $t1, 8			# $t0 = $t1 + 8
 and		$t0, $t1, $t2
 and		$t0, $t1, 8
 sub		$t0, $t1, $t2		# $t0 = $t1 - $t2
+sll     $t0, $t1, 4
+srav    $t0, $t1, $t2
 bgez	$t0, 888
 bgtz	$t0, 888
 beq		$t0, $t1, 888		# if $t0 == $t1 then 888

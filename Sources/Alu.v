@@ -36,14 +36,20 @@ always @(*) begin
             out = opA ^ opB;
         `FUN_NOR:
             out = ~(opA | opB);
-        `FUN_SLL, `FUN_SLLV:
-            out = opA << opB;
-        `FUN_SRL, `FUN_SRLV:
-            out = opA >> opB;
-        `FUN_SRA, `FUN_SRAV:
-            out = opA >>> opB;
+        `FUN_SLL:
+            out = opB << opA; // rt << sa(opA)
+        `FUN_SLLV:
+            out = opB << (opA[4:0]); // rt << rs
+        `FUN_SRL:
+            out = opB >> opA;
+        `FUN_SRLV:
+            out = opB >> (opA[4:0]);
+        `FUN_SRA:
+            out = $signed(opB) >>> opA;
+        `FUN_SRAV:
+            out = $signed(opB) >>> (opA[4:0]);
         `FUN_JR:
-            out = opA + opB; // opB == 0
+            out = opA;
         `FUN_NO:
             out = 32'hxxxxxx;
 

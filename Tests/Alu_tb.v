@@ -57,6 +57,18 @@ initial begin
     #10 `assert(out, 'hd0a0b0e0);
 
     #10;
+    inst = `EXAMPLE_SLL;
+    opA = inst[10:6]; // shamt: 0x4
+    opB = 'h01234567;
+    #10 `assert(out, 'h12345670);
+
+    #10;
+    inst = `EXAMPLE_SRAV;
+    opA = 4;
+    opB = -32;
+    #10 `assert(out, -2);
+
+    #10;
     inst = `EXAMPLE_SLT;
     opA = 1;
     opB = 2;
