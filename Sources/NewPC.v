@@ -11,6 +11,7 @@ module NewPC(
            input wire [31:0] pc,
            input wire [31:0] instruction,
            input wire [31:0] jumpRegAddr,
+           input wire [31:0] extendedImm,
            input wire        taken,
            output reg [31:0] newPC
        );
@@ -18,10 +19,9 @@ module NewPC(
 wire [ 5:0] opcode    = instruction[31:26];
 wire [ 5:0] funct     = instruction[ 5: 0];
 wire [25:0] jumpIndex = instruction[25: 0];
-wire [15:0] immediate = instruction[15: 0];
 
 wire [31:0] nextAddr   = pc + 4;
-wire [31:0] branchAddr = (immediate << 2) + nextAddr;
+wire [31:0] branchAddr = (extendedImm << 2) + nextAddr;
 wire [31:0] jumpAddr   = {nextAddr[31:28], (jumpIndex << 2)};
 
 always @(*) begin
