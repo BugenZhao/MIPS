@@ -22,7 +22,7 @@ always @(*) begin
         `OPC_SPECIAL: begin
             case (funct)
                 `FUN_JR:   writeReg = 0;
-                `FUN_JALR: writeReg = 31; // link
+                `FUN_JALR: writeReg = rd; // link, 31 implied
                 default:   writeReg = rd;
             endcase
         end
