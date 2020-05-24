@@ -1,6 +1,6 @@
 AS      = mips32-elf-as
 OBJDUMP = mips32-elf-objdump
-ASFLAGS = -O0 -mips32 -EB
+ASFLAGS = -O0 -mips1 -EB
 SRCS    = $(wildcard *.mips)
 LSTS    = $(SRCS:.mips=.lst)
 

@@ -29,7 +29,7 @@ always @(*) begin
             writeReg = rt;
         `OPC_REGIMM: begin
             case (rt)
-                `RT_BGEZAL, `RT_BLTZAL: writeReg = 31;
+                `RT_BGEZAL, `RT_BLTZAL: writeReg = 31; // link
                 default: writeReg = 0;
             endcase
         end
@@ -41,7 +41,7 @@ always @(*) begin
             writeReg = 0;
         `OPC_J:
             writeReg = 0;
-        `OPC_JAL:
+        `OPC_JAL: // link
             writeReg = 31;
 
         default: begin
