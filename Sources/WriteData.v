@@ -15,6 +15,7 @@ module WriteData(
        );
 
 wire [5:0] opcode = `GET_OPC(instruction);
+wire [5:0] funct  = `GET_FUN(instruction);
 wire [4:0] rt     = `GET_RT(instruction);
 
 always @(*) begin
@@ -35,8 +36,14 @@ always @(*) begin
                 default: writeData = aluOut; // actually no data
             endcase
         end
-        `OPC_JAL:
+        `OPC_JAL: // link
             writeData = pc + 4;
+        `OPC_SPECIAL: begin
+            case (funct)
+                `FUN_JALR: writeData = pc + 4; // link
+                default:   writeData = aluOut;
+            endcase
+        end
         default:
             writeData = aluOut;
     endcase

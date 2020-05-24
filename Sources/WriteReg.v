@@ -21,8 +21,9 @@ always @(*) begin
     case (opcode)
         `OPC_SPECIAL: begin
             case (funct)
-                `FUN_JR: writeReg = 0;
-                default: writeReg = rd;
+                `FUN_JR:   writeReg = 0;
+                `FUN_JALR: writeReg = 31; // link
+                default:   writeReg = rd;
             endcase
         end
         `OPC_ADDI, `OPC_ADDIU, `OPC_ANDI, `OPC_ORI, `OPC_XORI, `OPC_LUI, `OPC_SLTI, `OPC_SLTIU:

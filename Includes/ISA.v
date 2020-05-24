@@ -80,6 +80,7 @@
 
 // Jump (alu: opA + 0)
 `define FUN_JR        6'b001000
+`define FUN_JALR      6'b001001
 
 // For alu:
 `define FUN_SLE       6'b111101

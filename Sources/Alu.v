@@ -52,7 +52,7 @@ always @(*) begin
             out = opB << 16;
         `FUN_SLE:
             out = $signed(opA) <= $signed(opB) ? 1 : 0;
-        `FUN_JR, `FUN_NO:
+        `FUN_JR, `FUN_JALR, `FUN_NO:
             out = 32'hxxxxxx;
 
         default: begin

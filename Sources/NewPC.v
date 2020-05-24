@@ -32,8 +32,10 @@ always @(*) begin
             newPC = jumpAddr;
         `OPC_SPECIAL: begin
             case (funct)
-                `FUN_JR: newPC = jumpRegAddr;
-                default: newPC = nextAddr;
+                `FUN_JR, `FUN_JALR: 
+                    newPC = jumpRegAddr;
+                default: 
+                    newPC = nextAddr;
             endcase
         end
         default:
