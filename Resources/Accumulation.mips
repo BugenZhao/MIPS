@@ -1,0 +1,21 @@
+init:
+    j		main				# jump to main
+
+
+worker:
+    add		$v0, $zero, $zero	# $v0 = $zero + $zero
+    add		$t0, $zero, $zero	# $t0 = $zero + $zero
+    j		.test				# jump to .test
+.loop:
+    add		$v0, $t0, $v0		# $v0 = $t0 + $v0
+    addi	$t0, $t0, 1			# $t0 = $t0 + 1
+.test:
+    bne		$t0, $a0, .loop	    # if $t0 != $a0 then .loop
+    jr		$ra					# jump to $ra
+
+
+main:
+    addi	$a0, $0, 5		    # $a0 = $0 + 5
+    jal		worker				# jump to worker and save position to $ra
+    sw		$v0, 0($zero)
+    
