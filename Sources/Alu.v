@@ -53,7 +53,7 @@ always @(*) begin
         `FUN_SLE:
             out = $signed(opA) <= $signed(opB) ? 1 : 0;
         `FUN_JR, `FUN_JALR, `FUN_NO:
-            out = 32'hxxxxxx;
+            out = 32'hxxxxxxxx;
 
         default: begin
             if (aluFunct != 6'bxxxxxx) $warning("%m: aluFunct not recognized: %06b", aluFunct);
