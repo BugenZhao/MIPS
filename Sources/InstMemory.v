@@ -11,9 +11,9 @@ module InstMemory(
            output wire [31:0] instruction
        );
 
-parameter memSize = 'hfffff;
+parameter memSize = 'h1ffff;
 reg [31:0] memFile[0:memSize];
 
-assign instruction = memFile[pc];
+assign instruction = memFile[pc >> 2];
 
 endmodule

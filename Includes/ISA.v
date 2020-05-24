@@ -91,7 +91,7 @@
 `define RT_BGEZAL       5'b10001
 
 
-// Instruction
+// Instruction -------------------------------------------
 
 `define GET_OPC(instruction)    instruction[31:26]
 `define GET_RS(instruction)     instruction[25:21]
@@ -99,3 +99,10 @@
 `define GET_RD(instruction)     instruction[15:11]
 `define GET_SHAMT(instruction)  instruction[10: 6]
 `define GET_FUN(instruction)    instruction[ 5: 0]
+
+
+// Memory mode -------------------------------------------
+
+`define MEM_BYTE        2'b00
+`define MEM_HALF        2'b01
+`define MEM_WORD        2'b10

@@ -16,7 +16,14 @@ module WriteData(
 wire [5:0] opcode = `GET_OPC(instruction);
 
 always @(*) begin
-    writeData = (opcode == `OPC_LB || opcode == `OPC_LW) ? memoryOut : aluOut;
+    case (opcode)
+        `OPC_LB:
+            writeData = {{24{memoryOut[7]}}, memoryOut[7:0]};
+        `OPC_LW:
+            writeData = memoryOut;
+        default:
+            writeData = aluOut;
+    endcase
 end
 
 endmodule // WriteData
