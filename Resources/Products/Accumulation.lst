@@ -5,27 +5,35 @@ a.out:     file format elf32-bigmips
 Disassembly of section .text:
 
 00000000 <init>:
-   0:	0800000c 	j	30 <main>
-   4:	00000000 	nop
+   0:	201d0020 	addi	sp,zero,32
+   4:	08000010 	j	40 <main>
+   8:	00000000 	nop
 
-00000008 <worker>:
-   8:	00001020 	add	v0,zero,zero
-   c:	00004020 	add	t0,zero,zero
-  10:	08000008 	j	20 <.test>
-  14:	00000000 	nop
-
-00000018 <.loop>:
-  18:	01021020 	add	v0,t0,v0
-  1c:	21080001 	addi	t0,t0,1
-
-00000020 <.test>:
-  20:	1504fffd 	bne	t0,a0,18 <.loop>
+0000000c <worker>:
+   c:	8fa40000 	lw	a0,0(sp)
+  10:	00000000 	nop
+  14:	23bd0004 	addi	sp,sp,4
+  18:	00001025 	move	v0,zero
+  1c:	00004025 	move	t0,zero
+  20:	0800000c 	j	30 <.test>
   24:	00000000 	nop
-  28:	03e00008 	jr	ra
-  2c:	00000000 	nop
 
-00000030 <main>:
-  30:	20040005 	addi	a0,zero,5
-  34:	0c000002 	jal	8 <worker>
-  38:	00000000 	nop
-  3c:	ac020000 	sw	v0,0(zero)
+00000028 <.loop>:
+  28:	01021021 	addu	v0,t0,v0
+  2c:	25080001 	addiu	t0,t0,1
+
+00000030 <.test>:
+  30:	1504fffd 	bne	t0,a0,28 <.loop>
+  34:	00000000 	nop
+  38:	03e00008 	jr	ra
+  3c:	00000000 	nop
+
+00000040 <main>:
+  40:	2408000a 	li	t0,10
+  44:	23bdfffc 	addi	sp,sp,-4
+  48:	afa80000 	sw	t0,0(sp)
+  4c:	3c090000 	lui	t1,0x0
+  50:	2529000c 	addiu	t1,t1,12
+  54:	0120f809 	jalr	t1
+  58:	00000000 	nop
+  5c:	ac020000 	sw	v0,0(zero)

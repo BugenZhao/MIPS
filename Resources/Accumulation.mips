@@ -1,21 +1,26 @@
 init:
+    addi	$sp, $zero, 0x20    # $sp = 0x20
     j		main				# jump to main
 
-
 worker:
-    add		$v0, $zero, $zero	# $v0 = $zero + $zero
-    add		$t0, $zero, $zero	# $t0 = $zero + $zero
+    lw		$a0, 0($sp)		    # pop 10
+    addi    $sp, $sp, 4
+    move 	$v0, $zero		    # $v0 = $zero
+    move 	$t0, $zero		    # $t0 = $zero
     j		.test				# jump to .test
 .loop:
-    add		$v0, $t0, $v0		# $v0 = $t0 + $v0
-    addi	$t0, $t0, 1			# $t0 = $t0 + 1
+    addu	$v0, $t0, $v0		# $v0 = $t0 + $v0
+    addiu	$t0, $t0, 1			# $t0 = $t0 + 1
 .test:
     bne		$t0, $a0, .loop	    # if $t0 != $a0 then .loop
     jr		$ra					# jump to $ra
 
 
 main:
-    addi	$a0, $0, 5		    # $a0 = $0 + 5
-    jal		worker				# jump to worker and save position to $ra
+    li		$t0, 10		        # $t0 = 10
+    addi    $sp, $sp, -4
+    sw      $t0, 0($sp)         # push 10
+    la		$t1, worker
+    jalr    $t1                 # call worker
     sw		$v0, 0($zero)
     

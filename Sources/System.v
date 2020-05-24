@@ -5,23 +5,22 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
-module System;
+
+module System #(parameter textDump = "path/to/text/dump",
+                parameter PERIOD   = 10);
 
 // --- Clock ---
 reg clk;
-parameter PEROID = 10;
-always #(PEROID) clk = !clk;
-
+always #(PERIOD) clk = !clk;
+initial clk = 1;
 
 // --- Memory ---
 wire [31:0] pc;
 wire [31:0] instruction;
-parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Accumulation.mem";
 InstMemory #(textDump) u_InstMemory(
 	.pc          (pc          ),
     .instruction (instruction )
 );
-
 
 wire [31:0] dataAddress;
 wire [31:0] writeData, readData;
@@ -50,15 +49,6 @@ CPU u_CPU(
     .memMode      (memMode      ),
     .readMemData  (readData     )
 );
-
-
-
-initial begin
-    clk = 1;
-    $dumpfile("wave.vcd");
-    $dumpvars;
-    #700 $finish;
-end
 
 
 endmodule // System
