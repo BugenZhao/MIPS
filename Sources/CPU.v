@@ -8,9 +8,12 @@
 
 module CPU(
            input clk,
-           input wire  [31:0] inst, data,
+           output wire [31:0] pc,
+           input  wire [31:0] inst,
+           output wire [31:0] dataAddress, writeMemData,
+           output wire        memRead, memWrite,
            output wire [ 1:0] memMode,
-           output wire [31:0] pc, dataAddress
+           input  wire [31:0] readMemData 
        );
 
 
@@ -87,7 +90,8 @@ Taken u_Taken(
 
 
 // --- MEM ---
-wire memRead, memWrite;
+assign dataAddress = aluOut;
+assign writeMemData = readData2; // (Reg file's rt)
 MemControl u_MemControl(
 	.instruction (inst     ),
     .memRead     (memRead  ),
@@ -96,11 +100,11 @@ MemControl u_MemControl(
 );
 
 WriteData u_WriteData(
-	.pc          (pc        ),
-    .instruction (inst      ),
-    .aluOut      (aluOut    ),
-    .memoryOut   (data      ),
-    .writeData   (writeData )
+	.pc          (pc          ),
+    .instruction (inst        ),
+    .aluOut      (aluOut      ),
+    .memoryOut   (readMemData ),
+    .writeData   (writeData   )
 );
 
 
