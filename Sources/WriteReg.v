@@ -35,7 +35,7 @@ always @(*) begin
         end
         `OPC_BGTZ, `OPC_BLEZ, `OPC_BEQ, `OPC_BNE:
             writeReg = 0;
-        `OPC_LB, `OPC_LW:
+        `OPC_LB, `OPC_LBU, `OPC_LW:
             writeReg = rt;
         `OPC_SB, `OPC_SW:
             writeReg = 0;

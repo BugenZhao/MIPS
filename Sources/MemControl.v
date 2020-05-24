@@ -18,7 +18,7 @@ always @(*) begin
     memRead  = 0;
     memWrite = 0;
     case (opcode)
-        `OPC_LB: begin
+        `OPC_LB, `OPC_LBU: begin
             memRead = 1;
             mode    = `MEM_BYTE;
         end

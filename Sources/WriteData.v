@@ -19,6 +19,8 @@ always @(*) begin
     case (opcode)
         `OPC_LB:
             writeData = {{24{memoryOut[7]}}, memoryOut[7:0]};
+        `OPC_LBU:
+            writeData = {{24{1'b0}}, memoryOut[7:0]};
         `OPC_LW:
             writeData = memoryOut;
         default:

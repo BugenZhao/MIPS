@@ -42,7 +42,7 @@ always @(*) begin
             opB = rtData;
         `OPC_ADDI, `OPC_ADDIU, `OPC_ANDI, `OPC_ORI, `OPC_XORI, `OPC_LUI, `OPC_SLTI, `OPC_SLTIU: //imm
             opB = extendedImm;
-        `OPC_LB, `OPC_LW, `OPC_SB, `OPC_SW: // l, s
+        `OPC_LB, `OPC_LBU, `OPC_LW, `OPC_SB, `OPC_SW: // l, s
             opB = extendedImm;
         default: // j, jal
             opB = 32'hxxxxxxxx;

@@ -38,7 +38,7 @@ always @(*) begin
             aluFunct = `FUN_SLE; // opB will be 0
         `OPC_BEQ, `OPC_BNE:
             aluFunct = `FUN_SUB;
-        `OPC_LB, `OPC_LW, `OPC_SB, `OPC_SW:
+        `OPC_LB, `OPC_LBU, `OPC_LW, `OPC_SB, `OPC_SW:
             aluFunct = `FUN_ADD;
         `OPC_J, `OPC_JAL:
             aluFunct = `FUN_NO;
