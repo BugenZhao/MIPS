@@ -48,9 +48,9 @@ always @(*) begin
             out = $signed(opB) >>> opA;
         `FUN_SRAV:
             out = $signed(opB) >>> (opA[4:0]);
-        `FUN_JR:
-            out = opA;
-        `FUN_NO:
+        `FUN_LUI:
+            out = opB << 16;
+        `FUN_JR, `FUN_NO:
             out = 32'hxxxxxx;
 
         default: begin

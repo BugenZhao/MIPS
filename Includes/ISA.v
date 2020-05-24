@@ -77,7 +77,8 @@
 // Jump (alu: opA + 0)
 `define FUN_JR        6'b001000
 
-// No
+// For alu:
+`define FUN_LUI       6'b111110
 `define FUN_NO        6'b111111
 
 

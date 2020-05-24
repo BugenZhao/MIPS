@@ -20,6 +20,7 @@
 `define EXAMPLE_SUB     32'h012a4022
 `define EXAMPLE_SLL     32'h00094100    // sll	t0,t1,0x4
 `define EXAMPLE_SRAV    32'h01494007    // srav t0,t1,t2
+`define EXAMPLE_LUI     32'h3c081234    // lui	t0,0x1234
 `define EXAMPLE_SLT     32'h0109082a
 `define EXAMPLE_BGEZ    32'h050101bb
 `define EXAMPLE_BGTZ    32'h1d0001bb

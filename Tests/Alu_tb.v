@@ -96,7 +96,12 @@ initial begin
     inst = `EXAMPLE_J;
     opA = 888888;
     opB = 0;
-    #10 `assert(out, 32'hxxxxxx);
+    #10 `assert(out, 32'hxxxxxxxx);
+
+    #10;
+    inst = `EXAMPLE_LUI;
+    opB = inst[15:0]; // 0x1234
+    #10 `assert(out, 32'h12340000);
 
     #10 $finish;
 end
