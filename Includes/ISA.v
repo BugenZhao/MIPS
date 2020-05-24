@@ -78,6 +78,7 @@
 `define FUN_JR        6'b001000
 
 // For alu:
+`define FUN_SLE       6'b111101
 `define FUN_LUI       6'b111110
 `define FUN_NO        6'b111111
 

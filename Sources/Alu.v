@@ -50,6 +50,8 @@ always @(*) begin
             out = $signed(opB) >>> (opA[4:0]);
         `FUN_LUI:
             out = opB << 16;
+        `FUN_SLE:
+            out = $signed(opA) <= $signed(opB) ? 1 : 0;
         `FUN_JR, `FUN_NO:
             out = 32'hxxxxxx;
 

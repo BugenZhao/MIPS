@@ -15,7 +15,7 @@ module AluFunct(
 always @(*) begin
     case (opcode)
         `OPC_SPECIAL:
-            aluFunct = funct; // JR: no
+            aluFunct = funct; // JR: NO
         `OPC_ADDI:
             aluFunct = `FUN_ADD;
         `OPC_ADDIU:
@@ -33,9 +33,9 @@ always @(*) begin
         `OPC_SLTIU:
             aluFunct = `FUN_SLTU;
         `OPC_REGIMM: // BGEZ, BGEZAL, BLTZ, BLTZAL, (BAL)
-            aluFunct = `FUN_SLT;
+            aluFunct = `FUN_SLT; // opB will be 0
         `OPC_BGTZ, `OPC_BLEZ:
-            aluFunct = `FUN_SLT;
+            aluFunct = `FUN_SLE; // opB will be 0
         `OPC_BEQ, `OPC_BNE:
             aluFunct = `FUN_SUB;
         `OPC_LB, `OPC_LW, `OPC_SB, `OPC_SW:
