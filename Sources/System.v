@@ -16,10 +16,12 @@ always #(PEROID) clk = !clk;
 // --- Memory ---
 wire [31:0] pc;
 wire [31:0] instruction;
-InstMemory u_InstMemory(
+parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Accumulation.mem";
+InstMemory #(textDump) u_InstMemory(
 	.pc          (pc          ),
     .instruction (instruction )
 );
+
 
 wire [31:0] dataAddress;
 wire [31:0] writeData, readData;
@@ -38,13 +40,25 @@ DataMemory u_DataMemory(
 
 // --- MIPS CPU ---
 CPU u_CPU(
-	.clk         (clk         ),
-    .inst        (instruction ),
-    .data        (readData    ),
-    .memMode     (memMode     ),
-    .pc          (pc          ),
-    .dataAddress (dataAddress )
+	.clk          (clk          ),
+    .pc           (pc           ),
+    .inst         (instruction  ),
+    .dataAddress  (dataAddress  ),
+    .writeMemData (writeData    ),
+    .memRead      (memRead      ),
+    .memWrite     (memWrite     ),
+    .memMode      (memMode      ),
+    .readMemData  (readData     )
 );
+
+
+
+initial begin
+    clk = 1;
+    $dumpfile("wave.vcd");
+    $dumpvars;
+    #700 $finish;
+end
 
 
 endmodule // System
