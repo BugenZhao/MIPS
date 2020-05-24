@@ -4,7 +4,7 @@
     "verilog-formatter.istyle.style": "K&R",
     "verilog-formatter.istyle.args": "--one-line=keep-statements",
     "verilog.linting.linter": "iverilog",
-    "verilog.linting.iverilog.arguments": "-y ../Sources/ -I ../Includes/ -Wall",
+    "verilog.linting.iverilog.arguments": "-y ./ -y ../Sources/ -I ../Includes/ -Wall",
     "verilog.linting.iverilog.runAtFileLocation": true,
     "verilog.logging.enabled": true,
     "systemverilog.documentSymbolsPrecision": "declaration"

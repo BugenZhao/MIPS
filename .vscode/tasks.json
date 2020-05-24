@@ -30,6 +30,8 @@
                 "-o",
                 "${workspaceFolder}/Build/${relativeFileDirname}/${fileBasenameNoExtension}.vvp",
                 "-y",
+                "./",
+                "-y",
                 "../Sources/",
                 "-I",
                 "../Includes/",
