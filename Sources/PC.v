@@ -14,6 +14,10 @@ module PC(
 
 reg [31:0] pcFile;
 
+initial begin: init
+    pcFile = 32'h0;
+end
+
 always @(negedge clk) begin
     pcFile <= newPC;
 end

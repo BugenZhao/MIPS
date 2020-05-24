@@ -20,6 +20,13 @@ module DataMemory(
 parameter memSize = 'hfffff;
 reg [7:0] memFile[0:memSize];
 
+initial begin: init
+    integer i;
+    for (i = 0; i < memSize; i++) begin
+        memFile[i] = 0;
+    end
+end
+
 // FIXME: misaligned access should not be allowed
 
 always @(negedge clk) begin
