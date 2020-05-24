@@ -13,7 +13,7 @@ worker:
     addiu	$t0, $t0, 1			# $t0 = $t0 + 1
 .test:
     bne		$t0, $a0, .loop	    # if $t0 != $a0 then .loop
-    jr		$ra					# jump to $ra
+    jr		$k0					# jump to $k0
 
 
 main:
@@ -21,6 +21,6 @@ main:
     addi    $sp, $sp, -4
     sw      $t0, 0($sp)         # push 10
     la		$t1, worker
-    jalr    $t1                 # call worker
+    jalr    $k0, $t1            # call worker
     sw		$v0, 0($zero)
     

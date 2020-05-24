@@ -9,7 +9,7 @@ OUTDIR  = ./Products
 
 all: $(LSTS)
 
-%.mem:%.mips
+%.mem: %.mips
 	mkdir -p $(OUTDIR)
 	$(AS) -o a.out $< $(ASFLAGS)
 	$(OBJDUMP) -d a.out > $(OUTDIR)/$(@:.mem=.lst)

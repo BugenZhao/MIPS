@@ -25,7 +25,7 @@ Disassembly of section .text:
 00000030 <.test>:
   30:	1504fffd 	bne	t0,a0,28 <.loop>
   34:	00000000 	nop
-  38:	03e00008 	jr	ra
+  38:	03400008 	jr	k0
   3c:	00000000 	nop
 
 00000040 <main>:
@@ -34,6 +34,6 @@ Disassembly of section .text:
   48:	afa80000 	sw	t0,0(sp)
   4c:	3c090000 	lui	t1,0x0
   50:	2529000c 	addiu	t1,t1,12
-  54:	0120f809 	jalr	t1
+  54:	0120d009 	jalr	k0,t1
   58:	00000000 	nop
   5c:	ac020000 	sw	v0,0(zero)
