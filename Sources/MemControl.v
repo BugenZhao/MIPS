@@ -23,6 +23,10 @@ always @(*) begin
             memRead = 1;
             mode    = `MEM_BYTE;
         end
+        `OPC_LH, `OPC_LHU: begin
+            memRead = 1;
+            mode    = `MEM_HALF;
+        end
         `OPC_LW: begin
             memRead = 1;
             mode    = `MEM_WORD;
@@ -30,6 +34,10 @@ always @(*) begin
         `OPC_SB: begin
             memWrite = 1;
             mode     = `MEM_BYTE;
+        end
+        `OPC_SH: begin
+            memWrite = 1;
+            mode     = `MEM_HALF;
         end
         `OPC_SW: begin
             memWrite = 1;

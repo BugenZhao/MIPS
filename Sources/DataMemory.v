@@ -40,7 +40,7 @@ always @(negedge clk) begin
             end
             `MEM_WORD: begin
                 memFile[address] = writeData[7:0];
-                memFile[address + 1] = writeData[15:8];
+                memFile[address + 1] = writeData[15: 8];
                 memFile[address + 2] = writeData[23:16];
                 memFile[address + 3] = writeData[31:24];
             end

@@ -23,6 +23,10 @@ always @(*) begin
             writeData = {{24{memoryOut[7]}}, memoryOut[7:0]};
         `OPC_LBU:
             writeData = {{24{1'b0}}, memoryOut[7:0]};
+        `OPC_LH:
+            writeData = {{16{memoryOut[15]}}, memoryOut[15:0]};
+        `OPC_LHU:
+            writeData = {{16{1'b0}}, memoryOut[15:0]};
         `OPC_LW:
             writeData = memoryOut;
         `OPC_REGIMM: begin

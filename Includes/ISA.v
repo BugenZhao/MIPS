@@ -32,8 +32,11 @@
 
 `define OPC_LB       6'b100000
 `define OPC_LBU      6'b100100
+`define OPC_LH       6'b100001
+`define OPC_LHU      6'b100101
 `define OPC_LW       6'b100011
 `define OPC_SB       6'b101000
+`define OPC_SH       6'b101001
 `define OPC_SW       6'b101011
 
 
