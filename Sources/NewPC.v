@@ -21,8 +21,8 @@ wire [25:0] jumpIndex = instruction[25: 0];
 wire [15:0] immediate = instruction[15: 0];
 
 wire [31:0] nextAddr   = pc + 4;
-wire [31:0] branchAddr = (immediate << 2) + pc;
-wire [31:0] jumpAddr   = { nextAddr[31:28], (jumpIndex << 2) };
+wire [31:0] branchAddr = (immediate << 2) + nextAddr;
+wire [31:0] jumpAddr   = {nextAddr[31:28], (jumpIndex << 2)};
 
 always @(*) begin
     case (opcode)

@@ -90,3 +90,12 @@
 `define RT_BGEZ         5'b00001
 `define RT_BGEZAL       5'b10001
 
+
+// Instruction
+
+`define GET_OPC(instruction)    instruction[31:26]
+`define GET_RS(instruction)     instruction[25:21]
+`define GET_RT(instruction)     instruction[20:16]
+`define GET_RD(instruction)     instruction[15:11]
+`define GET_SHAMT(instruction)  instruction[10: 6]
+`define GET_FUN(instruction)    instruction[ 5: 0]
