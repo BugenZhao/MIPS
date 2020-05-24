@@ -20,6 +20,8 @@ module DataMemory(
 parameter memSize = 'hfffff;
 reg [7:0] memFile[0:memSize];
 
+// FIXME: misaligned access should not be allowed
+
 always @(negedge clk) begin
     if (memWrite) begin
         case (mode)

@@ -9,7 +9,8 @@
 
 module MemControl(
            input wire [31:0] instruction,
-           output reg        memRead, memWrite, mode
+           output reg        memRead, memWrite,
+           output reg [ 1:0] mode
        );
 
 wire [5:0] opcode = `GET_OPC(instruction);
