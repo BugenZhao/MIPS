@@ -5,20 +5,21 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
+`include "ISA.v"
 
 module CPU(
            input clk,
-           output wire [31:0] pc,
-           input  wire [31:0] inst,
-           output wire [31:0] dataAddress, writeMemData,
+           output wire [`WORD] pc,
+           input  wire [`WORD] inst,
+           output wire [`WORD] dataAddress, writeMemData,
            output wire        memRead, memWrite,
-           output wire [ 1:0] memMode,
-           input  wire [31:0] readMemData 
+           output wire [ `MMD] memMode,
+           input  wire [`WORD] readMemData 
        );
 
 
 // --- IF ---
-wire [31:0] newPC;
+wire [`WORD] newPC;
 PC u_PC(
 	.clk   (clk   ),
     .newPC (newPC ),
@@ -27,9 +28,9 @@ PC u_PC(
 
 
 // --- ID & WB ---
-wire [ 4:0] writeReg;
-wire [31:0] writeData;
-wire [31:0] readData1, readData2;
+wire [ `REG] writeReg;
+wire [`WORD] writeData;
+wire [`WORD] readData1, readData2;
 RegisterFile u_RegisterFile(
 	.clk       (clk         ),
     .readReg1  (inst[25:21] ),
@@ -46,7 +47,7 @@ WriteReg u_WriteReg(
     .writeReg    (writeReg )
 );
 
-wire [31:0] extendedImm;
+wire [`WORD] extendedImm;
 SignExtend u_SignExtend(
 	.origin   (inst[15:0]  ),
     .extended (extendedImm )
@@ -54,7 +55,7 @@ SignExtend u_SignExtend(
 
 
 // --- EX ---
-wire [31:0] opA, opB;
+wire [`WORD] opA, opB;
 Operator u_Operator(
 	.instruction (inst        ),
     .rsData      (readData1   ),
@@ -64,14 +65,14 @@ Operator u_Operator(
     .opB         (opB         )
 );
 
-wire [5:0] aluFunct;
+wire [`FUN] aluFunct;
 ALUFunct u_ALUFunct(
 	.opcode   (inst[31:26] ),
     .funct    (inst[5:0]   ),
     .aluFunct (aluFunct    )
 );
 
-wire [31:0] aluOut;
+wire [`WORD] aluOut;
 wire aluZero;
 ALU u_ALU(
 	.opA      (opA      ),

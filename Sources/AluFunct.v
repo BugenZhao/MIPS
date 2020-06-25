@@ -8,8 +8,9 @@
 `include "ISA.v"
 
 module ALUFunct(
-           input wire [5:0] opcode, funct,
-           output reg [5:0] aluFunct
+           input wire [`OPC] opcode,
+           input wire [`FUN] funct,
+           output reg [`FUN] aluFunct
        );
 
 always @(*) begin

@@ -5,14 +5,15 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
+`include "ISA.v"
 
 module PC(
            input clk,
-           input wire  [31:0] newPC,
-           output wire [31:0] pc
+           input wire  [`WORD] newPC,
+           output wire [`WORD] pc
        );
 
-reg [31:0] pcFile;
+reg [`WORD] pcFile;
 
 initial begin: init
     pcFile = 32'h0;

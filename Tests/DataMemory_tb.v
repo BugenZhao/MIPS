@@ -18,12 +18,12 @@ end
 /*iverilog */
 
 reg clk;
-reg  [ 1:0] mode;
-reg  [31:0] address;
-reg  [31:0] writeData;
+reg  [ `MMD] mode;
+reg  [`WORD] address;
+reg  [`WORD] writeData;
 reg         memRead;
 reg         memWrite;
-wire [31:0] readData;
+wire [`WORD] readData;
 
 
 parameter PERIOD = 100;

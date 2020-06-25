@@ -18,13 +18,13 @@ end
 /*iverilog */
 
 reg clk;
-reg  [ 4:0] readReg1;
-reg  [ 4:0] readReg2;
-reg  [ 4:0] writeReg;
-reg  [31:0] writeData;
+reg  [ `REG] readReg1;
+reg  [ `REG] readReg2;
+reg  [ `REG] writeReg;
+reg  [`WORD] writeData;
 reg         regWrite;
-wire [31:0] readData1;
-wire [31:0] readData2;
+wire [`WORD] readData1;
+wire [`WORD] readData2;
 
 
 parameter PERIOD = 100;

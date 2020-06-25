@@ -8,14 +8,14 @@
 `include "ISA.v"
 
 module Operator(
-           input wire [31:0] instruction,
-           input wire [31:0] rsData, rtData, extendedImm,
-           output reg [31:0] opA, opB
+           input wire [`WORD] instruction,
+           input wire [`WORD] rsData, rtData, extendedImm,
+           output reg [`WORD] opA, opB
        );
 
-wire [5:0] opcode = `GET_OPC(instruction);
-wire [5:0] funct  = `GET_FUN(instruction);
-wire [4:0] shamt  = `GET_SHAMT(instruction);
+wire [`OPC] opcode = `GET_OPC(instruction);
+wire [`FUN] funct  = `GET_FUN(instruction);
+wire [`SHA] shamt  = `GET_SHAMT(instruction);
 
 // opA:
 always @(*) begin

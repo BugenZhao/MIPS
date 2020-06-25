@@ -5,10 +5,11 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
+`include "ISA.v"
 
 module SignExtend(
-           input wire  [15:0] origin,
-           output wire [31:0] extended
+           input wire  [15: 0] origin,
+           output wire [`WORD] extended
        );
 
 assign extended = { {16{origin[15]}}, origin };

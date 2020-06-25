@@ -5,19 +5,20 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
+`include "ISA.v"
 
 module RegisterFile(
            input clk,
-           input wire  [ 4:0] readReg1,
-           input wire  [ 4:0] readReg2,
-           input wire  [ 4:0] writeReg,
-           input wire  [31:0] writeData,
+           input wire  [ `REG] readReg1,
+           input wire  [ `REG] readReg2,
+           input wire  [ `REG] writeReg,
+           input wire  [`WORD] writeData,
            input wire         regWrite,
-           output wire [31:0] readData1,
-           output wire [31:0] readData2
+           output wire [`WORD] readData1,
+           output wire [`WORD] readData2
        );
 
-reg [31:0] regFile[0:31];
+reg [`WORD] regFile[0:31];
 
 always @(negedge clk) begin
     if (regWrite) regFile[writeReg] <= writeData;

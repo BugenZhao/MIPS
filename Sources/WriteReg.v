@@ -8,14 +8,14 @@
 `include "ISA.v"
 
 module WriteReg(
-           input wire [31:0] instruction,
-           output reg [ 4:0] writeReg
+           input wire [`WORD] instruction,
+           output reg [ `REG] writeReg
        );
 
-wire [5:0] opcode = `GET_OPC(instruction);
-wire [5:0] funct  = `GET_FUN(instruction);
-wire [4:0] rt     = `GET_RT(instruction);
-wire [4:0] rd     = `GET_RD(instruction);
+wire [`OPC] opcode = `GET_OPC(instruction);
+wire [`FUN] funct  = `GET_FUN(instruction);
+wire [`REG] rt     = `GET_RT(instruction);
+wire [`REG] rd     = `GET_RD(instruction);
 
 always @(*) begin
     case (opcode)
