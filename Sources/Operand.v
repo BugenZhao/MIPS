@@ -10,7 +10,11 @@
 module Operand(
            input wire [`WORD] instruction,
            input wire [`WORD] rsData, rtData, extendedImm,
-           output reg [`WORD] opA, opB
+           input wire         rsFwd, rtFwd,
+           input wire [`WORD] rsFwdData, rtFwdData,
+
+           output reg [`WORD] opA, opB,
+           output reg [`WORD] memWriteData
        );
 
 wire [`OPC] opcode = `GET_OPC(instruction);
@@ -25,11 +29,11 @@ always @(*) begin
                 `FUN_SLL, `FUN_SRL, `FUN_SRA:
                     opA = {{27{1'b0}}, shamt};
                 default:
-                    opA = rsData;
+                    opA = rsFwd ? rsFwdData : rsData;
             endcase
         end
         default:
-            opA = rsData;
+            opA = rsFwd ? rsFwdData : rsData;
     endcase
 end
 
@@ -39,7 +43,7 @@ always @(*) begin
         `OPC_REGIMM, `OPC_BGTZ, `OPC_BLEZ: // slt, sle
             opB = 0;
         `OPC_SPECIAL, `OPC_BEQ, `OPC_BNE: // alu
-            opB = rtData;
+            opB = rtFwd ? rtFwdData : rtData;
         `OPC_ADDI, `OPC_ADDIU, `OPC_ANDI, `OPC_ORI, `OPC_XORI, `OPC_LUI, `OPC_SLTI, `OPC_SLTIU: //imm
             opB = extendedImm;
         `OPC_LB, `OPC_LBU, `OPC_LH, `OPC_LHU, `OPC_LW, `OPC_SB, `OPC_SH, `OPC_SW: // l, s
@@ -47,6 +51,11 @@ always @(*) begin
         default: // j, jal
             opB = 32'hxxxxxxxx;
     endcase
+end
+
+// memWriteData:
+always @(*) begin
+    memWriteData = rtFwd ? rtFwdData : rtData;
 end
 
 endmodule // Operand
