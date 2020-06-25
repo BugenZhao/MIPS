@@ -17,6 +17,8 @@ wire [`OPC] opcode = `GET_OPC(instruction);
 wire [`FUN] funct  = `GET_FUN(instruction);
 wire [`SHA] shamt  = `GET_SHAMT(instruction);
 
+wire [`WORD] zeroExtendedImm = {{16{1'b0}}, extendedImm[15:0]};
+
 // opA:
 always @(*) begin
     case (opcode)
@@ -40,8 +42,10 @@ always @(*) begin
             opB = 0;
         `OPC_SPECIAL, `OPC_BEQ, `OPC_BNE: // alu
             opB = rtData;
-        `OPC_ADDI, `OPC_ADDIU, `OPC_ANDI, `OPC_ORI, `OPC_XORI, `OPC_LUI, `OPC_SLTI, `OPC_SLTIU: //imm
+        `OPC_ADDI, `OPC_ADDIU, `OPC_SLTI, `OPC_SLTIU: // imm
             opB = extendedImm;
+        `OPC_ANDI, `OPC_ORI, `OPC_XORI, `OPC_LUI: // zero-ext imm
+            opB = zeroExtendedImm;
         `OPC_LB, `OPC_LBU, `OPC_LH, `OPC_LHU, `OPC_LW, `OPC_SB, `OPC_SH, `OPC_SW: // l, s
             opB = extendedImm;
         default: // j, jal
