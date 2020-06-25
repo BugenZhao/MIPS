@@ -19,7 +19,6 @@ all: $(LSTS)
 	$(OBJCOPY) --dump-section .text=a.bin a.out
 	$(OBJCOPY) -I binary -O binary --reverse-bytes=4 a.bin r.bin
 	od -An -v -t x4 r.bin | tr ' ' '\n' | sed '/^$$/d' > $(OUTDIR)/$@
-	sed '/00000000/d' $(OUTDIR)/$@ > $(OUTDIR)/$(@:.mem=_compact.mem)
 	rm a.bin a.out r.bin
 
 %.mem: %.c
@@ -30,7 +29,6 @@ all: $(LSTS)
 	$(OBJCOPY) -I binary -O binary --reverse-bytes=4 a.bin r.bin
 	echo "241d0100\n241f0400\n" > $(OUTDIR)/$@
 	od -An -v -t x4 r.bin | tr ' ' '\n' | sed '/^$$/d' >> $(OUTDIR)/$@
-	sed '/00000000/d' $(OUTDIR)/$@ > $(OUTDIR)/$(@:.mem=_compact.mem)
 	rm a.bin a.out r.bin
 
 clean:
