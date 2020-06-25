@@ -9,12 +9,12 @@
 
 module DataMemory(
            input clk,
-           input wire [31:0] address,
-           input wire [31:0] writeData,
-           input wire [ 1:0] mode,
+           input wire [`WORD] address,
+           input wire [`WORD] writeData,
+           input wire [ `MMD] mode,
            input wire        memRead,
            input wire        memWrite,
-           output reg [31:0] readData
+           output reg [`WORD] readData
        );
 
 parameter memSize = 'hfffff;

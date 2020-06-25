@@ -8,13 +8,13 @@
 `include "ISA.v"
 
 module Taken (
-           input wire [31:0] instruction,
+           input wire [`WORD] instruction,
            input wire        aluZero, // SUB, SLT, SLE
            output reg        taken
        );
 
-wire [5:0] opcode = instruction[31:26];
-wire [4:0] rt     = instruction[20:16];
+wire [`OPC] opcode = instruction[31:26];
+wire [`REG] rt     = instruction[20:16];
 
 wire set = ~aluZero; // SLT, SLE
 

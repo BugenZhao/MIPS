@@ -8,21 +8,21 @@
 `include "ISA.v"
 
 module NewPC(
-           input wire [31:0] pc,
-           input wire [31:0] instruction,
-           input wire [31:0] jumpRegAddr,
-           input wire [31:0] extendedImm,
+           input wire [`WORD] pc,
+           input wire [`WORD] instruction,
+           input wire [`WORD] jumpRegAddr,
+           input wire [`WORD] extendedImm,
            input wire        taken,
-           output reg [31:0] newPC
+           output reg [`WORD] newPC
        );
 
-wire [ 5:0] opcode    = instruction[31:26];
-wire [ 5:0] funct     = instruction[ 5: 0];
+wire [`OPC] opcode    = instruction[31:26];
+wire [`FUN] funct     = instruction[ 5: 0];
 wire [25:0] jumpIndex = instruction[25: 0];
 
-wire [31:0] nextAddr   = pc + 4;
-wire [31:0] branchAddr = (extendedImm << 2) + nextAddr;
-wire [31:0] jumpAddr   = {nextAddr[31:28], (jumpIndex << 2)};
+wire [`WORD] nextAddr   = pc + 4;
+wire [`WORD] branchAddr = (extendedImm << 2) + nextAddr;
+wire [`WORD] jumpAddr   = {nextAddr[31:28], (jumpIndex << 2)};
 
 always @(*) begin
     case (opcode)

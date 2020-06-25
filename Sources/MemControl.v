@@ -8,12 +8,12 @@
 `include "ISA.v"
 
 module MemControl(
-           input wire [31:0] instruction,
+           input wire [`WORD] instruction,
            output reg        memRead, memWrite,
-           output reg [ 1:0] mode
+           output reg [ `MMD] mode
        );
 
-wire [5:0] opcode = `GET_OPC(instruction);
+wire [`OPC] opcode = `GET_OPC(instruction);
 
 always @(*) begin
     memRead  = 0;

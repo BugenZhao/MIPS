@@ -5,14 +5,15 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
+`include "ISA.v"
 
 module InstMemory #(parameter textDump = "path/to/text/dump") (
-           input wire  [31:0] pc,
-           output wire [31:0] instruction
+           input wire  [`WORD] pc,
+           output wire [`WORD] instruction
        );
 
 parameter memSize = 'h1ffff;
-reg [31:0] memFile[0:memSize];
+reg [`WORD] memFile[0:memSize];
 
 initial begin: init
     integer i;

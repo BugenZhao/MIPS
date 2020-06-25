@@ -8,15 +8,15 @@
 `include "ISA.v"
 
 module WriteData(
-           input wire [31:0] pc,
-           input wire [31:0] instruction,
-           input wire [31:0] aluOut, memoryOut,
-           output reg [31:0] writeData
+           input wire [`WORD] pc,
+           input wire [`WORD] instruction,
+           input wire [`WORD] aluOut, memoryOut,
+           output reg [`WORD] writeData
        );
 
-wire [5:0] opcode = `GET_OPC(instruction);
-wire [5:0] funct  = `GET_FUN(instruction);
-wire [4:0] rt     = `GET_RT(instruction);
+wire [`OPC] opcode = `GET_OPC(instruction);
+wire [`FUN] funct  = `GET_FUN(instruction);
+wire [`REG] rt     = `GET_RT(instruction);
 
 always @(*) begin
     case (opcode)

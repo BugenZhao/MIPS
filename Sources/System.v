@@ -5,6 +5,7 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
+`include "ISA.v"
 
 module System #(parameter textDump = "path/to/text/dump",
                 parameter PERIOD   = 10);
@@ -15,16 +16,16 @@ always #(PERIOD) clk = !clk;
 initial clk = 1;
 
 // --- Memory ---
-wire [31:0] pc;
-wire [31:0] instruction;
+wire [`WORD] pc;
+wire [`WORD] instruction;
 InstMemory #(textDump) u_InstMemory(
 	.pc          (pc          ),
     .instruction (instruction )
 );
 
-wire [31:0] dataAddress;
-wire [31:0] writeData, readData;
-wire [ 1:0] memMode;
+wire [`WORD] dataAddress;
+wire [`WORD] writeData, readData;
+wire [ `MMD] memMode;
 wire        memRead, memWrite;
 DataMemory u_DataMemory(
 	.clk       (clk         ),

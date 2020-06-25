@@ -96,6 +96,16 @@
 `define RT_BGEZAL       5'b10001
 
 
+// Length ------------------------------------------------
+
+`define OPC      5:0
+`define REG      4:0
+`define SHA      4:0
+`define FUN      5:0
+`define WORD    31:0
+`define MMD      1:0
+
+
 // Instruction -------------------------------------------
 
 `define GET_OPC(instruction)    instruction[31:26]

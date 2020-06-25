@@ -15,17 +15,17 @@ initial begin
 end
 
 
-reg [31:0] inst;
-wire [5:0] aluFunct;
+reg [`WORD] inst;
+wire [`FUN] aluFunct;
 
 ALUFunct u_ALUFunct(
              .opcode   (inst[31:26]),
-             .funct    (inst[5:0]),
+             .funct    (inst[`FUN]),
              .aluFunct (aluFunct )
          );
 
-reg [31:0] opA, opB;
-wire [31:0] out;
+reg [`WORD] opA, opB;
+wire [`WORD] out;
 wire zero;
 
 ALU u_ALU(

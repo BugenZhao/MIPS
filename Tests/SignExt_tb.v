@@ -5,6 +5,7 @@
 // -------------------------------------------------------
 
 `timescale 1ns / 1ps
+`include "ISA.v"
 
 module SignExtend_tb;
 
@@ -16,7 +17,7 @@ end
 /*iverilog */
 
 reg  signed [15:0] origin;
-wire signed [31:0] extended;
+wire signed [`WORD] extended;
 
 SignExtend u_SignExtend(
 	.origin   (origin   ),

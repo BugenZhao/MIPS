@@ -27,7 +27,7 @@ initial begin: test
     for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
 
     #1200;
-    `assert(`memFile[3], 55);
+    `assert(`memFile[3], 45);
     $finish;
 end
 

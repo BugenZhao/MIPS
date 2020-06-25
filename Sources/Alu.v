@@ -8,10 +8,10 @@
 `include "ISA.v"
 
 module ALU(
-           input wire [31:0] opA, opB,
-           input wire [ 5:0] aluFunct,
-           output reg [31:0] out,
-           output reg        zero
+           input wire [`WORD] opA, opB,
+           input wire [ `FUN] aluFunct,
+           output reg [`WORD] out,
+           output reg         zero
        );
 
 always @(*) begin
@@ -39,15 +39,15 @@ always @(*) begin
         `FUN_SLL:
             out = opB << opA; // rt << sa(opA)
         `FUN_SLLV:
-            out = opB << (opA[4:0]); // rt << rs
+            out = opB << (opA[`SHA]); // rt << rs
         `FUN_SRL:
             out = opB >> opA;
         `FUN_SRLV:
-            out = opB >> (opA[4:0]);
+            out = opB >> (opA[`SHA]);
         `FUN_SRA:
             out = $signed(opB) >>> opA;
         `FUN_SRAV:
-            out = $signed(opB) >>> (opA[4:0]);
+            out = $signed(opB) >>> (opA[`SHA]);
         `FUN_LUI:
             out = opB << 16;
         `FUN_SLE:
