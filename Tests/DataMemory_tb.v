@@ -18,6 +18,7 @@ end
 /*iverilog */
 
 reg clk;
+reg  [ 1:0] mode;
 reg  [31:0] address;
 reg  [31:0] writeData;
 reg         memRead;
@@ -32,13 +33,16 @@ DataMemory u_DataMemory(
 	.clk       (clk       ),
     .address   (address   ),
     .writeData (writeData ),
+    .mode      (mode      ),
     .memRead   (memRead   ),
     .memWrite  (memWrite  ),
     .readData  (readData  )
 );
 
+
 initial begin
     clk = 1;
+    mode = `MEM_WORD;
 
     #80; // 80
     memRead  = 0;

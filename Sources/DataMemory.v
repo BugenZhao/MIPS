@@ -48,7 +48,7 @@ always @(negedge clk) begin
     end
 end
 
-always @(address, mode) begin
+always @(address, mode, memRead) begin
     if (memRead) begin
         case (mode)
             `MEM_BYTE:

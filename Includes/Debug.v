@@ -4,7 +4,7 @@
 // Bugen Zhao 2020
 // -------------------------------------------------------
 
-`define assert(signal, value) if (signal != value) $warning("ASSERTION FAILED: signal(%08X) != value(%08X)", signal, value);
+`define assert(signal, value) if (signal != value) $warning("ASSERTION FAILED: signal(%08X,%d) != value(%08X)", signal, signal, value);
 
 `define iverilog_init \
         initial begin \
