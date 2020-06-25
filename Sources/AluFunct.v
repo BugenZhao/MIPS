@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// -- AluFunct.v - Generate function code for ALU
+// -- ALUFunct.v - Generate function code for ALU
 // -------------------------------------------------------
 // Bugen Zhao 2020
 // -------------------------------------------------------
@@ -7,7 +7,7 @@
 `timescale 1ns / 1ps
 `include "ISA.v"
 
-module AluFunct(
+module ALUFunct(
            input wire [5:0] opcode, funct,
            output reg [5:0] aluFunct
        );
@@ -50,4 +50,4 @@ always @(*) begin
     endcase
 end
 
-endmodule // AluFunct
+endmodule // ALUFunct

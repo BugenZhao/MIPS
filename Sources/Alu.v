@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// -- Alu.v - ALU
+// -- ALU.v - ALU
 // -------------------------------------------------------
 // Bugen Zhao 2020
 // -------------------------------------------------------
@@ -7,7 +7,7 @@
 `timescale 1ns / 1ps
 `include "ISA.v"
 
-module Alu(
+module ALU(
            input wire [31:0] opA, opB,
            input wire [ 5:0] aluFunct,
            output reg [31:0] out,
@@ -64,4 +64,4 @@ always @(*) begin
     zero = out == 0 ? 1 : 0;
 end
 
-endmodule // Alu
+endmodule // ALU

@@ -65,7 +65,7 @@ Operator u_Operator(
 );
 
 wire [5:0] aluFunct;
-AluFunct u_AluFunct(
+ALUFunct u_ALUFunct(
 	.opcode   (inst[31:26] ),
     .funct    (inst[5:0]   ),
     .aluFunct (aluFunct    )
@@ -73,7 +73,7 @@ AluFunct u_AluFunct(
 
 wire [31:0] aluOut;
 wire aluZero;
-Alu u_Alu(
+ALU u_ALU(
 	.opA      (opA      ),
     .opB      (opB      ),
     .aluFunct (aluFunct ),
