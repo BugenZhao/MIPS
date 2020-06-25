@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// -- Operator.v - Decide which operator to use
+// -- Operand.v - Decide which Operand to use
 // -------------------------------------------------------
 // Bugen Zhao 2020
 // -------------------------------------------------------
@@ -7,7 +7,7 @@
 `timescale 1ns / 1ps
 `include "ISA.v"
 
-module Operator(
+module Operand(
            input wire [`WORD] instruction,
            input wire [`WORD] rsData, rtData, extendedImm,
            output reg [`WORD] opA, opB
@@ -49,4 +49,4 @@ always @(*) begin
     endcase
 end
 
-endmodule // Operator
+endmodule // Operand
