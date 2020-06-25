@@ -18,6 +18,8 @@ PipeSystem #(textDump, PERIOD) u_PipeSystem();
 `define memFile u_PipeSystem.u_DataMemory.memFile
 `define regFile u_PipeSystem.u_PipeCPU.u_RegisterFile.regFile
 
+reg [`WORD] word;
+
 initial begin: test
     integer i;
 
@@ -27,7 +29,8 @@ initial begin: test
     for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
 
     #1200;
-    `assert(`memFile[3], 45);
+    word = {`memFile[8], `memFile[9], `memFile[10], `memFile[11]};
+    `assert(word, 32'hdeadbeef);
     $finish;
 end
 
