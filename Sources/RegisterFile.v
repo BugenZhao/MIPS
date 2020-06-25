@@ -27,7 +27,7 @@ initial begin: init
     end
 end
 
-always @(negedge clk) begin
+always @(posedge clk) begin
     if (regWrite) regFile[writeReg] <= writeData;
 end
 
