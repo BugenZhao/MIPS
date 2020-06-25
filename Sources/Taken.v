@@ -9,8 +9,11 @@
 
 module Taken (
            input wire [`WORD] instruction,
-           input wire        aluZero, // SUB, SLT, SLE
-           output reg        taken
+           input wire [`WORD] newPC,
+           input wire [`WORD] extendedImm,
+           input wire         aluZero, // SUB, SLT, SLE
+           output reg         taken,
+           output reg [`WORD] branchAddr
        );
 
 wire [`OPC] opcode = instruction[31:26];
@@ -43,5 +46,7 @@ always @(*) begin
         default:
             taken = 'bx;
     endcase
+
+    branchAddr = (extendedImm << 2) + newPC;
 end
 endmodule // Taken
