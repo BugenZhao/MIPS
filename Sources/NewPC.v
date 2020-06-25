@@ -15,7 +15,8 @@ module NewPC(
            input wire         isJumpReg,
            input wire [`WORD] branchAddr,
            input wire         taken,
-           
+           input wire         stall,
+
            output reg [`WORD] newPC,
            output reg         flushID, flushEX
        );
@@ -28,7 +29,14 @@ wire [`WORD] nextAddr   = pc + 4;
 wire [`WORD] jumpAddr   = {nextAddr[31:28], (jumpIndex << 2)};
 
 always @(*) begin
-    if (taken) begin
+    flushID = 0;
+    flushEX = 0;
+
+    if (stall) begin
+        newPC = pc;
+        flushEX = 1;
+    end
+    else if (taken) begin
         newPC = branchAddr;
         flushID = 1;
         flushEX = 1;
@@ -45,8 +53,6 @@ always @(*) begin
             default:
                 newPC = nextAddr;
         endcase
-        flushID = 0;
-        flushEX = 0;
     end
 end
 

@@ -13,7 +13,7 @@ module StageRegEX(
            input wire  [`WORD] idNewPC, idInstruction,
            input wire  [`WORD] idReg1, idReg2,
            input wire  [`WORD] idExtendedImm,
-           input wire          flush, stall,
+           input wire          flush,
 
            output wire [`WORD] exNewPC, exInstruction,
            output wire [`WORD] exReg1, exReg2,
@@ -25,7 +25,7 @@ reg [`WORD] reg1, reg2;
 reg [`WORD] extendedImm;
 
 always @(negedge clk) begin
-    if (flush || stall) begin
+    if (flush) begin
         newPC = idNewPC;
         instruction = 0;
         reg1 = 0;
