@@ -20,6 +20,13 @@ module RegisterFile(
 
 reg [`WORD] regFile[0:31];
 
+initial begin: init
+    integer i;
+    for (i = 0; i < 32; i++) begin
+        regFile[i] = 0;
+    end
+end
+
 always @(negedge clk) begin
     if (regWrite) regFile[writeReg] <= writeData;
 end
