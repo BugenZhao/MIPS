@@ -10,7 +10,7 @@
 module Forward(
            input wire [ `REG] memWriteReg, wbWriteReg,
            input wire         memMemRead, wbMemRead,
-           input wire [`WORD] memAluOut, wbAluOut, wbMemOut,
+           input wire [`WORD] memALUOut, wbALUOut, wbMemOut,
            input wire [`WORD] memNewPC, wbNewPC,
 
            input wire [`WORD] exInstruction, memInstruction, wbInstruction,
@@ -68,14 +68,14 @@ always @(*) begin
             end
         end
         else begin
-            // forward wbAluOut from WB
+            // forward wbALUOut from WB
             if (wbWriteReg == rs) begin
                 rsFwd = 1;
-                rsFwdData = wbAluOut;
+                rsFwdData = wbALUOut;
             end
             if (wbWriteReg == rt) begin
                 rtFwd = 1;
-                rtFwdData = wbAluOut;
+                rtFwdData = wbALUOut;
             end
         end
     end
@@ -97,14 +97,14 @@ always @(*) begin
             // load and use, should never occur
         end
         else begin
-            // forward memAluOut from MEM
+            // forward memALUOut from MEM
             if (memWriteReg == rs) begin
                 rsFwd = 1;
-                rsFwdData = memAluOut;
+                rsFwdData = memALUOut;
             end
             if (memWriteReg == rt) begin
                 rtFwd = 1;
-                rtFwdData = memAluOut;
+                rtFwdData = memALUOut;
             end
         end
     end
