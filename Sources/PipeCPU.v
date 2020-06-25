@@ -20,10 +20,10 @@ module PipeCPU(
        );
 
 // --- IF ---
-wire [`WORD] ifNewPC;
+wire [`WORD] newPC;
 PC u_PC(
 	.clk   (clk),
-    .newPC (ifNewPC),
+    .newPC (newPC),
     .pc    (pc)
 );
 
@@ -33,7 +33,7 @@ wire idFlush;
 wire [`WORD] idNewPC, idInst;
 StageRegID u_StageRegID(
 	.clk           (clk),
-    .ifNewPC       (ifNewPC),
+    .ifNewPC       (pc + 4),
     .ifInstruction (inst),
     .flush         (idFlush),
     .idNewPC       (idNewPC),
@@ -226,7 +226,7 @@ NewPC u_NewPC(
     .branchAddr  (exBranchAddr),
     .taken       (exTaken),
     .stall       (stall),
-    .newPC       (ifNewPC),
+    .newPC       (newPC),
     .flushID     (idFlush),
     .flushEX     (exFlush)
 );

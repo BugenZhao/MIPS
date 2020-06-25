@@ -10,7 +10,7 @@
 
 module PipeSystem_tb;
 
-parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Accumulation.mem";
+parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Add.mem";
 parameter PERIOD   = 10;
 
 PipeSystem #(textDump, PERIOD) u_PipeSystem();
@@ -26,7 +26,7 @@ initial begin: test
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
     for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
 
-    #1500;
+    #1200;
     `assert(`memFile[3], 45);
     $finish;
 end
