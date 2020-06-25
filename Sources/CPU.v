@@ -56,7 +56,7 @@ SignExtend u_SignExtend(
 
 // --- EX ---
 wire [`WORD] opA, opB;
-Operator u_Operator(
+Operand u_Operand(
 	.instruction (inst        ),
     .rsData      (readData1   ),
     .rtData      (readData2   ),
