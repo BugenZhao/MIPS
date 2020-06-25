@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// -- System_tb.v
+// -- PipeSystem_tb.v
 // -------------------------------------------------------
 // Bugen Zhao 2020
 // -------------------------------------------------------
@@ -8,15 +8,15 @@
 `include "ISA.v"
 `include "Debug.v"
 
-module System_tb;
+module PipeSystem_tb;
 
 parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Accumulation.mem";
 parameter PERIOD   = 10;
 
-System #(textDump, PERIOD) u_System();
+PipeSystem #(textDump, PERIOD) u_PipeSystem();
 
-`define memFile u_System.u_DataMemory.memFile
-`define regFile u_System.u_CPU.u_RegisterFile.regFile
+`define memFile u_PipeSystem.u_DataMemory.memFile
+`define regFile u_PipeSystem.u_PipeCPU.u_RegisterFile.regFile
 
 initial begin: test
     integer i;
@@ -26,9 +26,9 @@ initial begin: test
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
     for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
 
-    #1200;
+    #8000;
     `assert(`memFile[3], 45);
     $finish;
 end
 
-endmodule // System_tb
+endmodule // PipeSystem_tb
