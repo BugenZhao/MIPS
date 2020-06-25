@@ -16,8 +16,6 @@ module StageRegID(
            output reg [`WORD] idNewPC, idInstruction
        );
 
-// reg [`WORD] newPC, instruction;
-
 always @(negedge clk) begin
     if (flush) begin
         idNewPC <= ifNewPC;
@@ -29,7 +27,5 @@ always @(negedge clk) begin
     end
 end
 
-// assign idNewPC = newPC;
-// assign idInstruction = instruction;
 
 endmodule // StageRegID

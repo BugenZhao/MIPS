@@ -47,8 +47,8 @@ wire [`WORD] wbWriteData;
 wire [`WORD] idReg1, idReg2;
 RegisterFile u_RegisterFile(
 	.clk       (clk       ),
-    .readReg1  (idInst[25:21]),
-    .readReg2  (idInst[20:16]  ),
+    .readReg1  (`GET_RS(idInst)),
+    .readReg2  (`GET_RT(idInst)),
     .writeReg  (wbWriteReg  ),
     .writeData (wbWriteData ),
     .regWrite  (1'b1  ),
@@ -103,8 +103,8 @@ Operand u_Operand(
 
 wire [`FUN] exALUFunct;
 ALUFunct u_ALUFunct(
-	.opcode   (exInst[31:26]   ),
-    .funct    (exInst[5:0]    ),
+	.opcode   (`GET_OPC(exInst)),
+    .funct    (`GET_FUN(exInst)),
     .aluFunct (exALUFunct )
 );
 

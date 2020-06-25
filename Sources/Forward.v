@@ -94,9 +94,7 @@ always @(*) begin
             end
         end
         else if (memMemRead) begin
-            // load and use should never occur
-            if ((memWriteReg == rs && useRs) || (memWriteReg == rt && useRt))
-                $warning("LOAD & USE HAZARD NOT RESOLVED: pc = %08X", memNewPC);
+            // load and use, should never occur
         end
         else begin
             // forward memAluOut from MEM

@@ -23,12 +23,6 @@ module StageRegMEM(
            output reg [ `MMD] memMemMode
        );
 
-// reg [`WORD] newPC, instruction;
-// reg [`WORD] aluOut, writeToMemData;
-// reg [ `REG] writeReg;
-// reg         memRead, memWrite;
-// reg [ `MMD] memMode;
-
 always @(negedge clk) begin
     memNewPC <= exNewPC;
     memInstruction <= exInstruction;
@@ -40,13 +34,5 @@ always @(negedge clk) begin
     memMemMode <= exMemMode;
 end
 
-// assign memNewPC = newPC;
-// assign memInstruction = instruction;
-// assign memAluOut = aluOut;
-// assign memWriteToMemData = writeToMemData;
-// assign memWriteReg = writeReg;
-// assign memMemRead = memRead;
-// assign memMemWrite = memWrite;
-// assign memMemMode = memMode;
 
 endmodule // StageRegMEM

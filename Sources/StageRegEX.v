@@ -20,10 +20,6 @@ module StageRegEX(
            output reg [`WORD] exExtendedImm
        );
 
-// reg [`WORD] newPC, instruction;
-// reg [`WORD] reg1, reg2;
-// reg [`WORD] extendedImm;
-
 always @(negedge clk) begin
     if (flush) begin
         exNewPC <= idNewPC;
@@ -40,11 +36,5 @@ always @(negedge clk) begin
         exExtendedImm <= idExtendedImm;
     end
 end
-
-// assign exNewPC = newPC;
-// assign exInstruction = instruction;
-// assign exReg1 = reg1;
-// assign exReg2 = reg2;
-// assign exExtendedImm = extendedImm;
 
 endmodule // StageRegEX

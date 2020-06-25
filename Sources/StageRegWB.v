@@ -21,25 +21,13 @@ module StageRegWB(
            output reg         wbMemRead
        );
 
-// reg [`WORD] newPC, instruction;
-// reg [`WORD] aluOut, memOut;
-// reg [ `REG] writeReg;
-// reg         memRead;
-
 always @(negedge clk) begin
-    wbNewPC = memNewPC;
-    wbInstruction = memInstruction;
-    wbAluOut = memAluOut;
-    wbMemOut = memMemOut;
-    wbWriteReg = memWriteReg;
-    wbMemRead = memMemRead;
+    wbNewPC <= memNewPC;
+    wbInstruction <= memInstruction;
+    wbAluOut <= memAluOut;
+    wbMemOut <= memMemOut;
+    wbWriteReg <= memWriteReg;
+    wbMemRead <= memMemRead;
 end
-
-// assign wbNewPC = newPC;
-// assign wbInstruction = instruction;
-// assign wbAluOut = aluOut;
-// assign wbMemOut = memOut;
-// assign wbWriteReg = writeReg;
-// assign wbMemRead = memRead;
 
 endmodule // StageRegWB
