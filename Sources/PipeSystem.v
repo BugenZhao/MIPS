@@ -7,8 +7,8 @@
 `timescale 1ns / 1ps
 `include "ISA.v"
 
-module System #(parameter textDump = "path/to/text/dump",
-                parameter PERIOD   = 10);
+module PipeSystem #(parameter textDump = "path/to/text/dump",
+                    parameter PERIOD   = 10);
 
 // --- Clock ---
 reg clk;
@@ -51,4 +51,4 @@ PipeCPU u_PipeCPU(
     .readMemData  (readData     )
 );
 
-endmodule // System
+endmodule // PipeSystem

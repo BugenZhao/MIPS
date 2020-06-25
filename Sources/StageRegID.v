@@ -10,26 +10,26 @@
 module StageRegID(
            input clk,
 
-           input wire  [`WORD] ifNewPC, ifInstruction,
-           input wire          flush,
+           input wire [`WORD] ifNewPC, ifInstruction,
+           input wire         flush,
 
-           output wire [`WORD] idNewPC, idInstruction
+           output reg [`WORD] idNewPC, idInstruction
        );
 
-reg [`WORD] newPC, instruction;
+// reg [`WORD] newPC, instruction;
 
 always @(negedge clk) begin
     if (flush) begin
-        newPC = ifNewPC;
-        instruction = 0;
+        idNewPC <= ifNewPC;
+        idInstruction <= 0;
     end
     else begin
-        newPC = ifNewPC;
-        instruction = ifInstruction;
+        idNewPC <= ifNewPC;
+        idInstruction <= ifInstruction;
     end
 end
 
-assign idNewPC = newPC;
-assign idInstruction = instruction;
+// assign idNewPC = newPC;
+// assign idInstruction = instruction;
 
 endmodule // StageRegID

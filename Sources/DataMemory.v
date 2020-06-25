@@ -33,16 +33,16 @@ always @(negedge clk) begin
     if (memWrite) begin
         case (mode)
             `MEM_BYTE:
-                memFile[address + 0] = writeData[ 7: 0];
+                memFile[address + 0] <= writeData[ 7: 0];
             `MEM_HALF: begin
-                memFile[address + 0] = writeData[15: 8];
-                memFile[address + 1] = writeData[ 7: 0];
+                memFile[address + 0] <= writeData[15: 8];
+                memFile[address + 1] <= writeData[ 7: 0];
             end
             `MEM_WORD: begin
-                memFile[address + 0] = writeData[31:24];
-                memFile[address + 1] = writeData[23:16];
-                memFile[address + 2] = writeData[15: 8];
-                memFile[address + 3] = writeData[ 7: 0];
+                memFile[address + 0] <= writeData[31:24];
+                memFile[address + 1] <= writeData[23:16];
+                memFile[address + 2] <= writeData[15: 8];
+                memFile[address + 3] <= writeData[ 7: 0];
             end
         endcase
     end

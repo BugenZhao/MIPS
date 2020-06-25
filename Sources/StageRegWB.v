@@ -10,36 +10,36 @@
 module StageRegWB(
            input clk,
 
-           input wire  [`WORD] memNewPC, memInstruction,
-           input wire  [`WORD] memAluOut, memMemOut,
-           input wire  [ `REG] memWriteReg,
-           input wire          memMemRead,
+           input wire [`WORD] memNewPC, memInstruction,
+           input wire [`WORD] memAluOut, memMemOut,
+           input wire [ `REG] memWriteReg,
+           input wire         memMemRead,
 
-           output wire [`WORD] wbNewPC, wbInstruction,
-           output wire [`WORD] wbAluOut, wbMemOut,
-           output wire [ `REG] wbWriteReg,
-           output wire         wbMemRead
+           output reg [`WORD] wbNewPC, wbInstruction,
+           output reg [`WORD] wbAluOut, wbMemOut,
+           output reg [ `REG] wbWriteReg,
+           output reg         wbMemRead
        );
 
-reg [`WORD] newPC, instruction;
-reg [`WORD] aluOut, memOut;
-reg [ `REG] writeReg;
-reg         memRead;
+// reg [`WORD] newPC, instruction;
+// reg [`WORD] aluOut, memOut;
+// reg [ `REG] writeReg;
+// reg         memRead;
 
 always @(negedge clk) begin
-    newPC = memNewPC;
-    instruction = memInstruction;
-    aluOut = memAluOut;
-    memOut = memMemOut;
-    writeReg = memWriteReg;
-    memRead = memMemRead;
+    wbNewPC = memNewPC;
+    wbInstruction = memInstruction;
+    wbAluOut = memAluOut;
+    wbMemOut = memMemOut;
+    wbWriteReg = memWriteReg;
+    wbMemRead = memMemRead;
 end
 
-assign wbNewPC = newPC;
-assign wbInstruction = instruction;
-assign wbAluOut = aluOut;
-assign wbMemOut = memOut;
-assign wbWriteReg = writeReg;
-assign wbMemRead = memRead;
+// assign wbNewPC = newPC;
+// assign wbInstruction = instruction;
+// assign wbAluOut = aluOut;
+// assign wbMemOut = memOut;
+// assign wbWriteReg = writeReg;
+// assign wbMemRead = memRead;
 
 endmodule // StageRegWB
