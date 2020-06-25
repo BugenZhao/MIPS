@@ -5,27 +5,29 @@ a.out:     file format elf32-bigmips
 Disassembly of section .text:
 
 00000000 <.text>:
-   0:	012a4020 	add	t0,t1,t2
-   4:	21280008 	addi	t0,t1,8
-   8:	012a4024 	and	t0,t1,t2
-   c:	31280008 	andi	t0,t1,0x8
-  10:	012a4022 	sub	t0,t1,t2
-  14:	00094100 	sll	t0,t1,0x4
-  18:	01494007 	srav	t0,t1,t2
-  1c:	3c081234 	lui	t0,0x1234
-  20:	050101bb 	bgez	t0,0x710
-  24:	00000000 	nop
-  28:	1d0001bb 	bgtz	t0,0x718
+   0:	241d0100 	li	sp,256
+   4:	241f0400 	li	ra,1024
+   8:	012a4020 	add	t0,t1,t2
+   c:	21280008 	addi	t0,t1,8
+  10:	012a4024 	and	t0,t1,t2
+  14:	31280008 	andi	t0,t1,0x8
+  18:	012a4022 	sub	t0,t1,t2
+  1c:	00094100 	sll	t0,t1,0x4
+  20:	01494007 	srav	t0,t1,t2
+  24:	3c081234 	lui	t0,0x1234
+  28:	050101bb 	bgez	t0,0x718
   2c:	00000000 	nop
-  30:	110901bb 	beq	t0,t1,0x720
+  30:	1d0001bb 	bgtz	t0,0x720
   34:	00000000 	nop
-  38:	82290378 	lb	t1,888(s1)
+  38:	110901bb 	beq	t0,t1,0x728
   3c:	00000000 	nop
-  40:	8e290378 	lw	t1,888(s1)
+  40:	82290378 	lb	t1,888(s1)
   44:	00000000 	nop
-  48:	0803640e 	j	0xd9038
+  48:	8e290378 	lw	t1,888(s1)
   4c:	00000000 	nop
-  50:	03e00008 	jr	ra
+  50:	0803640e 	j	0xd9038
   54:	00000000 	nop
-  58:	0c00048d 	jal	0x1234
+  58:	03e00008 	jr	ra
   5c:	00000000 	nop
+  60:	0c00048d 	jal	0x1234
+  64:	00000000 	nop

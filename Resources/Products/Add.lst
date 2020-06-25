@@ -1,0 +1,52 @@
+
+a.out:     file format elf32-bigmips
+
+
+Disassembly of section .text:
+
+00000008 <_start>:
+   8:	27bdffe0 	addiu	sp,sp,-32
+   c:	afbf001c 	sw	ra,28(sp)
+  10:	afbe0018 	sw	s8,24(sp)
+  14:	afb00014 	sw	s0,20(sp)
+  18:	03a0f025 	move	s8,sp
+  1c:	00001825 	move	v1,zero
+  20:	3c02dead 	lui	v0,0xdead
+  24:	ac620000 	sw	v0,0(v1)
+  28:	24020004 	li	v0,4
+  2c:	3403beef 	li	v1,0xbeef
+  30:	ac430000 	sw	v1,0(v0)
+  34:	24100008 	li	s0,8
+  38:	24050004 	li	a1,4
+  3c:	00002025 	move	a0,zero
+  40:	0c00001b 	jal	6c <add>
+  44:	00000000 	nop
+  48:	ae020000 	sw	v0,0(s0)
+  4c:	00000000 	nop
+  50:	03c0e825 	move	sp,s8
+  54:	8fbf001c 	lw	ra,28(sp)
+  58:	8fbe0018 	lw	s8,24(sp)
+  5c:	8fb00014 	lw	s0,20(sp)
+  60:	27bd0020 	addiu	sp,sp,32
+  64:	03e00008 	jr	ra
+  68:	00000000 	nop
+
+0000006c <add>:
+  6c:	27bdfff8 	addiu	sp,sp,-8
+  70:	afbe0004 	sw	s8,4(sp)
+  74:	03a0f025 	move	s8,sp
+  78:	afc40008 	sw	a0,8(s8)
+  7c:	afc5000c 	sw	a1,12(s8)
+  80:	8fc20008 	lw	v0,8(s8)
+  84:	00000000 	nop
+  88:	8c430000 	lw	v1,0(v0)
+  8c:	8fc2000c 	lw	v0,12(s8)
+  90:	00000000 	nop
+  94:	8c420000 	lw	v0,0(v0)
+  98:	00000000 	nop
+  9c:	00621021 	addu	v0,v1,v0
+  a0:	03c0e825 	move	sp,s8
+  a4:	8fbe0004 	lw	s8,4(sp)
+  a8:	27bd0008 	addiu	sp,sp,8
+  ac:	03e00008 	jr	ra
+  b0:	00000000 	nop
