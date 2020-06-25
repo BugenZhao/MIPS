@@ -32,6 +32,12 @@ IsLink u_IsLink_wb(
            .isLink      (wbIsLink      )
        );
 
+wire useRs, useRt;
+RegUse u_RegUse(
+           .instruction (exInstruction ),
+           .useRs       (useRs         ),
+           .useRt       (useRt         )
+       );
 
 always @(*) begin
     rsFwd = 0;
@@ -88,8 +94,9 @@ always @(*) begin
             end
         end
         else if (memMemRead) begin
-            // load and use, should never occur
-            $warning("LOAD & USE HAZARD NOT RESOLVED: pc = %08X", memNewPC);
+            // load and use should never occur
+            if ((memWriteReg == rs && useRs) || (memWriteReg == rt && useRt))
+                $warning("LOAD & USE HAZARD NOT RESOLVED: pc = %08X", memNewPC);
         end
         else begin
             // forward memAluOut from MEM
