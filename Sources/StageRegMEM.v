@@ -11,35 +11,42 @@ module StageRegMEM(
            input clk,
 
            input wire  [`WORD] exNewPC, exInstruction,
-           input wire  [`WORD] exAluOut, exMemWriteData,
+           input wire  [`WORD] exAluOut, exWriteToMemData,
            input wire  [ `REG] exWriteReg,
-           input wire          exMemRead,
+           input wire          exMemRead, exMemWrite,
+           input wire  [ `MMD] exMemMode,
 
            output wire [`WORD] memNewPC, memInstruction,
-           output wire [`WORD] memAluOut, memMemWriteData,
+           output wire [`WORD] memAluOut, memWriteToMemData,
            output wire [ `REG] memWriteReg,
-           output wire         memMemRead
+           output wire         memMemRead, memMemWrite,
+           output wire [ `MMD] memMemMode
        );
 
 reg [`WORD] newPC, instruction;
-reg [`WORD] aluOut, memWriteData;
+reg [`WORD] aluOut, writeToMemData;
 reg [ `REG] writeReg;
-reg         memRead;
+reg         memRead, memWrite;
+reg [ `MMD] memMode;
 
 always @(negedge clk) begin
     newPC = exNewPC;
     instruction = exInstruction;
     aluOut = exAluOut;
-    memWriteData = exMemWriteData;
+    writeToMemData = exWriteToMemData;
     writeReg = exWriteReg;
     memRead = exMemRead;
+    memWrite = exMemWrite;
+    memMode = exMemMode;
 end
 
 assign memNewPC = newPC;
 assign memInstruction = instruction;
 assign memAluOut = aluOut;
-assign memMemWriteData = memWriteData;
+assign memWriteToMemData = writeToMemData;
 assign memWriteReg = writeReg;
 assign memMemRead = memRead;
+assign memMemWrite = memMemWrite;
+assign memMemMode = memMode;
 
 endmodule // StageRegMEM

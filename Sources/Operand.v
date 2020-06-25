@@ -14,7 +14,7 @@ module Operand(
            input wire [`WORD] rsFwdData, rtFwdData,
 
            output reg [`WORD] opA, opB,
-           output reg [`WORD] memWriteData
+           output reg [`WORD] writeToMemData
        );
 
 wire [`OPC] opcode = `GET_OPC(instruction);
@@ -55,7 +55,7 @@ end
 
 // memWriteData:
 always @(*) begin
-    memWriteData = rtFwd ? rtFwdData : rtData;
+    writeToMemData = rtFwd ? rtFwdData : rtData;
 end
 
 endmodule // Operand
