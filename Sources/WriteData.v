@@ -8,7 +8,7 @@
 `include "ISA.v"
 
 module WriteData(
-           input wire [`WORD] pc,
+           input wire [`WORD] pc, // SHOULD BE CURRENT PC IN PIPELINE!
            input wire [`WORD] instruction,
            input wire [`WORD] aluOut, memoryOut,
            output reg [`WORD] writeData

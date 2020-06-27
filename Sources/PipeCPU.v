@@ -208,7 +208,7 @@ StageRegWB u_StageRegWB(
 
 // --- WB ---
 WriteData u_WriteData(
-	.pc          (wbNewPC),
+	.pc          (wbNewPC - 4), // SHOULD BE CURRENT PC
     .instruction (wbInst),
     .aluOut      (wbALUOut),
     .memoryOut   (wbMemOut),
