@@ -1,3 +1,4 @@
+    .set noreorder
 init:
     addi	$sp, $zero, 0x20    # $sp = 0x20
     j		main				# jump to main
