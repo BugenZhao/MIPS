@@ -7,8 +7,14 @@ Disassembly of section .text:
 00000000 <main>:
    0:	8c090000 	lw	t1,0(zero)
    4:	8c0a0004 	lw	t2,4(zero)
-   8:	01490018 	mult	t2,t1
+   8:	01490019 	multu	t2,t1
    c:	00005810 	mfhi	t3
   10:	ac0b0008 	sw	t3,8(zero)
   14:	00005812 	mflo	t3
   18:	ac0b000c 	sw	t3,12(zero)
+  1c:	000a5022 	neg	t2,t2
+  20:	01490018 	mult	t2,t1
+  24:	00006010 	mfhi	t4
+  28:	ac0c0010 	sw	t4,16(zero)
+  2c:	00006012 	mflo	t4
+  30:	ac0c0014 	sw	t4,20(zero)

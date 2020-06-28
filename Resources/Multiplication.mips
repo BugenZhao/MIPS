@@ -3,8 +3,16 @@
 main:
     lw		$t1, 0($zero)
     lw      $t2, 4($zero)
-    mult	$t2, $t1			# $t2 * $t1 = Hi and Lo registers
+
+    multu	$t2, $t1			# $t2 * $t1 = Hi and Lo registers
     mfhi    $t3
     sw      $t3, 8($zero)
     mflo	$t3
     sw		$t3, 12($zero)
+
+    sub		$t2, $zero, $t2		# $t2 = $zero - $t2
+    mult    $t2, $t1
+    mfhi    $t4
+    sw      $t4, 16($zero)
+    mflo	$t4
+    sw		$t4, 20($zero)

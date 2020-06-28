@@ -30,8 +30,9 @@ initial begin: test
 
     `wordAt(0) = 111111;
     `wordAt(4) = 222222;
-    #300;
-    `assert(`dwordAt(8), 64'd24_691_308_642);
+    #500;
+    `assert(`dwordAt(8),   64'd24_691_308_642); // unsigned
+    `assert(`dwordAt(16), -64'd24_691_308_642); // signed
     $finish;
 end
 

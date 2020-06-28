@@ -56,8 +56,10 @@ always @(*) begin
             out = $signed(opA) <= $signed(opB) ? 1 : 0;
         `FUN_MFHI, `FUN_MFLO:
             out = opA;
-        `FUN_MULT, `FUN_MULTU: // FIXME: signed mult
+        `FUN_MULTU:
             {outHi, out} = opA * opB;
+        `FUN_MULT:
+            {outHi, out} = $signed(opA) * $signed(opB);
         `FUN_JR, `FUN_JALR, `FUN_NO:
             out = 32'hxxxxxxxx;
 
