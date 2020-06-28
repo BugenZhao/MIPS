@@ -45,7 +45,8 @@ StageRegID u_StageRegID(
 
 // --- ID ---
 wire [ `REG] wbWriteReg;
-wire [`WORD] wbWriteData, wbWriteDataHi;
+wire [`WORD] wbWriteData;
+wire [`WORD] wbALUOutHi;
 wire         wbWriteLoHi;
 wire [`WORD] idReg1, idReg2;
 RegisterFile u_RegisterFile(
@@ -57,7 +58,7 @@ RegisterFile u_RegisterFile(
     .writeReg  (wbWriteReg),
     .writeLoHi (wbWriteLoHi),
     .writeData (wbWriteData),
-    .writeDataHi (wbWriteDataHi),
+    .writeDataHi (wbALUOutHi),
     .regWrite  (1'b1),
     .readData1 (idReg1),
     .readData2 (idReg2)
@@ -202,7 +203,7 @@ assign memMode = memMemMode;
 
 
 // --- MEM/WB ---
-wire [`WORD] wbNextPC, wbInst, wbALUOut, wbALUOutHi, wbMemOut;
+wire [`WORD] wbNextPC, wbInst, wbALUOut, wbMemOut;
 wire wbMemRead;
 StageRegWB u_StageRegWB(
 	.clk            (clk),
