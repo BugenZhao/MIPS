@@ -8,9 +8,9 @@
 `include "ISA.v"
 `include "Debug.v"
 
-module PSAccumulation_tb;
+module PSArithLogic_tb;
 
-parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Accumulation.mem";
+parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/ArithLogic.mem";
 parameter PERIOD   = 10;
 
 PipeSystem #(textDump, PERIOD) u_PipeSystem();
@@ -26,13 +26,17 @@ initial begin: test
     $dumpfile("wave.vcd");
     $dumpvars;
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
-    for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
 
-    `memFile[3] = 10; // sum(0..<10) ...
-    #2000;
-    `assert(`regFile[`V0], 45);
-    `assert(`memFile[3], 45); // == 45 ?
+    #500;
+    `assert(`regFile[`T1], 'h88);
+    `assert(`regFile[`T2], 'hef);
+    `assert(`regFile[`T3], 'h10);
+    `assert(`regFile[`T4], 'hff);
+    `assert(`regFile[`T5], 'h10);
+    `assert(`regFile[`T6], 'h1000);
+    `assert(`regFile[`T7], 'h100000);
+    
     $finish;
 end
 
-endmodule // PSAccumulation_tb
+endmodule // PSArithLogic_tb
