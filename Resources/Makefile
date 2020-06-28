@@ -23,8 +23,7 @@ all: $(LSTS)
 	od -An -v -t x4 r.bin | tr ' ' '\n' | sed '/^$$/d' > $(OUTDIR)/$@
 
 	$(OBJCOPY) --dump-section .data=a.data a.out
-	$(OBJCOPY) -I binary -O binary --reverse-bytes=4 a.data r.data || true
-	od -An -v -t x4 r.data | tr ' ' '\n' | sed '/^$$/d' > $(OUTDIR)/$(@:.mem=.data)
+	od -An -v -t x1 a.data | tr ' ' '\n' | sed '/^$$/d' > $(OUTDIR)/$(@:.mem=.data)
 
 	rm -f a.bin a.out r.bin a.data r.data
 
@@ -39,8 +38,7 @@ all: $(LSTS)
 	od -An -v -t x4 r.bin | tr ' ' '\n' | sed '/^$$/d' >> $(OUTDIR)/$@
 
 	$(OBJCOPY) --dump-section .data=a.data a.out
-	$(OBJCOPY) -I binary -O binary --reverse-bytes=4 a.data r.data || true
-	od -An -v -t x4 r.data | tr ' ' '\n' | sed '/^$$/d' > $(OUTDIR)/$(@:.mem=.data)
+	od -An -v -t x1 a.data | tr ' ' '\n' | sed '/^$$/d' > $(OUTDIR)/$(@:.mem=.data)
 
 	rm -f a.bin a.out r.bin a.data r.data
 
