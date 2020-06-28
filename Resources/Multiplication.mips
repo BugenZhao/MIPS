@@ -1,0 +1,10 @@
+    .set noreorder
+
+main:
+    lw		$t1, 0($zero)
+    lw      $t2, 4($zero)
+    mult	$t2, $t1			# $t2 * $t1 = Hi and Lo registers
+    mfhi    $t3
+    sw      $t3, 8($zero)
+    mflo	$t3
+    sw		$t3, 12($zero)

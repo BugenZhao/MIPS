@@ -30,3 +30,7 @@
 `define EXAMPLE_J       32'h0803640e
 `define EXAMPLE_JR      32'h03e00008
 `define EXAMPLE_NOP     32'h00000000
+
+
+`define wordAt(i)  {`memFile[i], `memFile[i+1], `memFile[i+2], `memFile[i+3]}
+`define dwordAt(i) {`memFile[i], `memFile[i+1], `memFile[i+2], `memFile[i+3], `memFile[i+4], `memFile[i+5], `memFile[i+6], `memFile[i+7]}

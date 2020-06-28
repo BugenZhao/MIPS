@@ -1,0 +1,96 @@
+
+a.out:     file format elf32-bigmips
+
+
+Disassembly of section .text:
+
+00000008 <_start>:
+   8:	27bdffe8 	addiu	sp,sp,-24
+   c:	afbe0014 	sw	s8,20(sp)
+  10:	03a0f025 	move	s8,sp
+  14:	24020004 	li	v0,4
+  18:	afc20008 	sw	v0,8(s8)
+  1c:	8fc20008 	lw	v0,8(s8)
+  20:	24030001 	li	v1,1
+  24:	ac430000 	sw	v1,0(v0)
+  28:	24020001 	li	v0,1
+  2c:	afc20000 	sw	v0,0(s8)
+  30:	1000003d 	b	128 <_start+0x120>
+  34:	00000000 	nop
+  38:	8fc20000 	lw	v0,0(s8)
+  3c:	00000000 	nop
+  40:	00021080 	sll	v0,v0,0x2
+  44:	8fc30008 	lw	v1,8(s8)
+  48:	00000000 	nop
+  4c:	00621021 	addu	v0,v1,v0
+  50:	ac400000 	sw	zero,0(v0)
+  54:	afc00004 	sw	zero,4(s8)
+  58:	10000029 	b	100 <_start+0xf8>
+  5c:	00000000 	nop
+  60:	8fc20000 	lw	v0,0(s8)
+  64:	00000000 	nop
+  68:	00021080 	sll	v0,v0,0x2
+  6c:	8fc30008 	lw	v1,8(s8)
+  70:	00000000 	nop
+  74:	00621021 	addu	v0,v1,v0
+  78:	8c430000 	lw	v1,0(v0)
+  7c:	8fc20004 	lw	v0,4(s8)
+  80:	00000000 	nop
+  84:	00021080 	sll	v0,v0,0x2
+  88:	8fc40008 	lw	a0,8(s8)
+  8c:	00000000 	nop
+  90:	00821021 	addu	v0,a0,v0
+  94:	8c440000 	lw	a0,0(v0)
+  98:	8fc20000 	lw	v0,0(s8)
+  9c:	00000000 	nop
+  a0:	2445ffff 	addiu	a1,v0,-1
+  a4:	8fc20004 	lw	v0,4(s8)
+  a8:	00000000 	nop
+  ac:	00a21023 	subu	v0,a1,v0
+  b0:	00021080 	sll	v0,v0,0x2
+  b4:	8fc50008 	lw	a1,8(s8)
+  b8:	00000000 	nop
+  bc:	00a21021 	addu	v0,a1,v0
+  c0:	8c420000 	lw	v0,0(v0)
+  c4:	00000000 	nop
+  c8:	00820018 	mult	a0,v0
+  cc:	8fc20000 	lw	v0,0(s8)
+  d0:	00000000 	nop
+  d4:	00021080 	sll	v0,v0,0x2
+  d8:	8fc40008 	lw	a0,8(s8)
+  dc:	00000000 	nop
+  e0:	00821021 	addu	v0,a0,v0
+  e4:	00002012 	mflo	a0
+  e8:	00641821 	addu	v1,v1,a0
+  ec:	ac430000 	sw	v1,0(v0)
+  f0:	8fc20004 	lw	v0,4(s8)
+  f4:	00000000 	nop
+  f8:	24420001 	addiu	v0,v0,1
+  fc:	afc20004 	sw	v0,4(s8)
+ 100:	8fc30004 	lw	v1,4(s8)
+ 104:	8fc20000 	lw	v0,0(s8)
+ 108:	00000000 	nop
+ 10c:	0062102a 	slt	v0,v1,v0
+ 110:	1440ffd3 	bnez	v0,60 <_start+0x58>
+ 114:	00000000 	nop
+ 118:	8fc20000 	lw	v0,0(s8)
+ 11c:	00000000 	nop
+ 120:	24420001 	addiu	v0,v0,1
+ 124:	afc20000 	sw	v0,0(s8)
+ 128:	8fc20000 	lw	v0,0(s8)
+ 12c:	00000000 	nop
+ 130:	2842000a 	slti	v0,v0,10
+ 134:	1440ffc0 	bnez	v0,38 <_start+0x30>
+ 138:	00000000 	nop
+ 13c:	8fc20008 	lw	v0,8(s8)
+ 140:	00000000 	nop
+ 144:	24420024 	addiu	v0,v0,36
+ 148:	8c430000 	lw	v1,0(v0)
+ 14c:	00001025 	move	v0,zero
+ 150:	ac430000 	sw	v1,0(v0)
+ 154:	00000000 	nop
+ 158:	03c0e825 	move	sp,s8
+ 15c:	8fbe0014 	lw	s8,20(sp)
+ 160:	27bd0018 	addiu	sp,sp,24
+ 164:	03e00008 	jr	ra
+ 168:	00000000 	nop
