@@ -17,10 +17,14 @@
     - SLLV
     - SRLV
     - SRAV
+  - **Move**
+    - MFHI
+    - MFLO
   - Arithmetic
     - ADD[U]
     - SUB[U]
     - SLT[U]
+    - **MULT[U]**
     - ADDI[U]
     - SLTI[U]
   - Jump
