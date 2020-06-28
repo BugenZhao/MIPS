@@ -9,7 +9,7 @@
 
 module Taken (
            input wire [`WORD] instruction,
-           input wire [`WORD] newPC,
+           input wire [`WORD] nextPC,
            input wire [`WORD] extendedImm,
            input wire         aluZero, // SUB, SLT, SLE
            output reg         taken,
@@ -47,6 +47,6 @@ always @(*) begin
             taken = 'bx;
     endcase
 
-    branchAddr = (extendedImm << 2) + newPC;
+    branchAddr = (extendedImm << 2) + nextPC;
 end
 endmodule // Taken

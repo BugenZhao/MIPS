@@ -30,13 +30,13 @@ PC u_PC(
 
 // --- IF/ID ---
 wire idFlush;
-wire [`WORD] idNewPC, idInst;
+wire [`WORD] idNextPC, idInst;
 StageRegID u_StageRegID(
 	.clk           (clk),
-    .ifNewPC       (pc + 4),
+    .ifNextPC       (pc + 4),
     .ifInstruction (inst),
     .flush         (idFlush),
-    .idNewPC       (idNewPC),
+    .idNextPC       (idNextPC),
     .idInstruction (idInst)
 );
 
@@ -65,16 +65,16 @@ SignExtend u_SignExtend(
 
 // --- ID/EX ---
 wire exFlush;
-wire [`WORD] exNewPC, exInst, exReg1, exReg2, exExtendedImm;
+wire [`WORD] exNextPC, exInst, exReg1, exReg2, exExtendedImm;
 StageRegEX u_StageRegEX(
 	.clk           (clk),
-    .idNewPC       (idNewPC),
+    .idNextPC       (idNextPC),
     .idInstruction (idInst),
     .idReg1        (idReg1),
     .idReg2        (idReg2),
     .idExtendedImm (idExtendedImm),
     .flush         (exFlush),
-    .exNewPC       (exNewPC),
+    .exNextPC       (exNextPC),
     .exInstruction (exInst),
     .exReg1        (exReg1),
     .exReg2        (exReg2),
@@ -128,7 +128,7 @@ wire exTaken;
 wire [`WORD] exBranchAddr;
 Taken u_Taken(
 	.instruction (exInst),
-    .newPC       (exNewPC),
+    .nextPC       (exNextPC),
     .extendedImm (exExtendedImm),
     .aluZero     (exALUZero),
     .taken       (exTaken),
@@ -153,13 +153,13 @@ JumpReg u_JumpReg(
 
 
 // --- EX/MEM ---
-wire [`WORD] memNewPC, memInst, memALUOut, memWriteToMemData;
+wire [`WORD] memNextPC, memInst, memALUOut, memWriteToMemData;
 wire [`REG]  memWriteReg;
 wire         memMemRead, memMemWrite;
 wire [`MMD]  memMemMode;
 StageRegMEM u_StageRegMEM(
 	.clk               (clk),
-    .exNewPC           (exNewPC),
+    .exNextPC           (exNextPC),
     .exInstruction     (exInst),
     .exALUOut          (exALUOut),
     .exWriteToMemData  (exWriteToMemData),
@@ -167,7 +167,7 @@ StageRegMEM u_StageRegMEM(
     .exMemRead         (exMemRead),
     .exMemWrite        (exMemWrite),
     .exMemMode         (exMemMode),
-    .memNewPC          (memNewPC),
+    .memNextPC          (memNextPC),
     .memInstruction    (memInst),
     .memALUOut         (memALUOut),
     .memWriteToMemData (memWriteToMemData),
@@ -187,17 +187,17 @@ assign memMode = memMemMode;
 
 
 // --- MEM/WB ---
-wire [`WORD] wbNewPC, wbInst, wbALUOut, wbMemOut;
+wire [`WORD] wbNextPC, wbInst, wbALUOut, wbMemOut;
 wire wbMemRead;
 StageRegWB u_StageRegWB(
 	.clk            (clk),
-    .memNewPC       (memNewPC),
+    .memNextPC       (memNextPC),
     .memInstruction (memInst),
     .memALUOut      (memALUOut),
     .memMemOut      (readMemData),
     .memWriteReg    (memWriteReg),
     .memMemRead     (memMemRead),
-    .wbNewPC        (wbNewPC),
+    .wbNextPC        (wbNextPC),
     .wbInstruction  (wbInst),
     .wbALUOut       (wbALUOut),
     .wbMemOut       (wbMemOut),
@@ -208,7 +208,7 @@ StageRegWB u_StageRegWB(
 
 // --- WB ---
 WriteData u_WriteData(
-	.pc          (wbNewPC - 4), // SHOULD BE CURRENT PC
+	.pc          (wbNextPC - 4), // SHOULD BE CURRENT PC
     .instruction (wbInst),
     .aluOut      (wbALUOut),
     .memoryOut   (wbMemOut),
@@ -241,8 +241,8 @@ Forward u_Forward(
     .memALUOut      (memALUOut),
     .wbALUOut       (wbALUOut),
     .wbMemOut       (wbMemOut),
-    .memNewPC       (memNewPC),
-    .wbNewPC        (wbNewPC),
+    .memNextPC       (memNextPC),
+    .wbNextPC        (wbNextPC),
     .exInstruction  (exInst),
     .memInstruction (memInst),
     .wbInstruction  (wbInst),

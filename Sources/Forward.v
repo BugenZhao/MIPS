@@ -11,7 +11,7 @@ module Forward(
            input wire [ `REG] memWriteReg, wbWriteReg,
            input wire         memMemRead, wbMemRead,
            input wire [`WORD] memALUOut, wbALUOut, wbMemOut,
-           input wire [`WORD] memNewPC, wbNewPC,
+           input wire [`WORD] memNextPC, wbNextPC,
 
            input wire [`WORD] exInstruction, memInstruction, wbInstruction,
 
@@ -46,14 +46,14 @@ always @(*) begin
     // forward form WB
     if (wbWriteReg != 0) begin
         if (wbIsLink) begin
-            // forward wbNewPC from WB
+            // forward wbNextPC from WB
             if (wbWriteReg == rs) begin
                 rsFwd = 1;
-                rsFwdData = wbNewPC;
+                rsFwdData = wbNextPC;
             end
             if (wbWriteReg == rt) begin
                 rtFwd = 1;
-                rtFwdData = wbNewPC;
+                rtFwdData = wbNextPC;
             end
         end
         else if (wbMemRead) begin
@@ -80,21 +80,21 @@ always @(*) begin
         end
     end
 
-    // forward from MEM, or stall
+    // forward from MEM
     if (memWriteReg != 0) begin
         if (memIsLink) begin
-            // forward memNewPC from MEM
+            // forward memNextPC from MEM
             if (memWriteReg == rs) begin
                 rsFwd = 1;
-                rsFwdData = memNewPC;
+                rsFwdData = memNextPC;
             end
             if (memWriteReg == rt) begin
                 rtFwd = 1;
-                rtFwdData = memNewPC;
+                rtFwdData = memNextPC;
             end
         end
         else if (memMemRead) begin
-            // load and use, should never occur
+            // load and use hazard, should never occur
         end
         else begin
             // forward memALUOut from MEM

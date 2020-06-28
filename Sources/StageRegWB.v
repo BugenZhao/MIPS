@@ -10,19 +10,19 @@
 module StageRegWB(
            input clk,
 
-           input wire [`WORD] memNewPC, memInstruction,
+           input wire [`WORD] memNextPC, memInstruction,
            input wire [`WORD] memALUOut, memMemOut,
            input wire [ `REG] memWriteReg,
            input wire         memMemRead,
 
-           output reg [`WORD] wbNewPC, wbInstruction,
+           output reg [`WORD] wbNextPC, wbInstruction,
            output reg [`WORD] wbALUOut, wbMemOut,
            output reg [ `REG] wbWriteReg,
            output reg         wbMemRead
        );
 
 always @(negedge clk) begin
-    wbNewPC <= memNewPC;
+    wbNextPC <= memNextPC;
     wbInstruction <= memInstruction;
     wbALUOut <= memALUOut;
     wbMemOut <= memMemOut;
