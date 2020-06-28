@@ -121,3 +121,24 @@
 `define MEM_BYTE        2'b00
 `define MEM_HALF        2'b01
 `define MEM_WORD        2'b11
+
+
+// Register ----------------------------------------------
+
+`define ZERO    5'd00
+`define AT      5'd01
+`define V0      5'd02
+`define V1      5'd03
+`define T0      5'd08
+`define T1      5'd09
+`define T2      5'd10
+`define T3      5'd11
+`define T4      5'd12
+`define T5      5'd13
+`define T6      5'd14
+`define T7      5'd15
+`define GP      5'd28
+`define SP      5'd29
+`define FP      5'd30
+`define RA      5'd31
+
