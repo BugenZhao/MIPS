@@ -45,14 +45,19 @@ StageRegID u_StageRegID(
 
 // --- ID ---
 wire [ `REG] wbWriteReg;
-wire [`WORD] wbWriteData;
+wire [`WORD] wbWriteData, wbWriteDataHi;
+wire         wbWriteLoHi;
 wire [`WORD] idReg1, idReg2;
 RegisterFile u_RegisterFile(
 	.clk       (clk),
+    .opcode    (`GET_OPC(idInst)),
+    .funct     (`GET_FUN(idInst)),
     .readReg1  (`GET_RS(idInst)),
     .readReg2  (`GET_RT(idInst)),
     .writeReg  (wbWriteReg),
+    .writeLoHi (wbWriteLoHi),
     .writeData (wbWriteData),
+    .writeDataHi (wbWriteDataHi),
     .regWrite  (1'b1),
     .readData1 (idReg1),
     .readData2 (idReg2)
@@ -110,20 +115,23 @@ ALUFunct u_ALUFunct(
     .aluFunct (exALUFunct)
 );
 
-wire [`WORD] exALUOut;
+wire [`WORD] exALUOut, exALUOutHi;
 wire exALUZero;
 ALU u_ALU(
 	.opA      (exOpA),
     .opB      (exOpB),
     .aluFunct (exALUFunct),
     .out      (exALUOut),
+    .outHi    (exALUOutHi),
     .zero     (exALUZero)
 );
 
 wire [`REG] exWriteReg;
+wire exWriteLoHi;
 WriteReg u_WriteReg(
 	.instruction (exInst),
-    .writeReg    (exWriteReg)
+    .writeReg    (exWriteReg),
+    .writeLoHi   (exWriteLoHi)
 );
 
 wire exTaken;
@@ -155,25 +163,30 @@ JumpReg u_JumpReg(
 
 
 // --- EX/MEM ---
-wire [`WORD] memNextPC, memInst, memALUOut, memWriteToMemData;
+wire [`WORD] memNextPC, memInst, memALUOut, memALUOutHi, memWriteToMemData;
 wire [`REG]  memWriteReg;
+wire         memWriteLoHi;
 wire         memMemRead, memMemWrite;
 wire [`MMD]  memMemMode;
 StageRegMEM u_StageRegMEM(
 	.clk               (clk),
-    .exNextPC           (exNextPC),
+    .exNextPC          (exNextPC),
     .exInstruction     (exInst),
     .exALUOut          (exALUOut),
+    .exALUOutHi        (exALUOutHi),
     .exWriteToMemData  (exWriteToMemData),
     .exWriteReg        (exWriteReg),
+    .exWriteLoHi       (exWriteLoHi),
     .exMemRead         (exMemRead),
     .exMemWrite        (exMemWrite),
     .exMemMode         (exMemMode),
-    .memNextPC          (memNextPC),
+    .memNextPC         (memNextPC),
     .memInstruction    (memInst),
     .memALUOut         (memALUOut),
+    .memALUOutHi       (memALUOutHi),
     .memWriteToMemData (memWriteToMemData),
     .memWriteReg       (memWriteReg),
+    .memWriteLoHi      (memWriteLoHi),
     .memMemRead        (memMemRead),
     .memMemWrite       (memMemWrite),
     .memMemMode        (memMemMode)
@@ -189,22 +202,26 @@ assign memMode = memMemMode;
 
 
 // --- MEM/WB ---
-wire [`WORD] wbNextPC, wbInst, wbALUOut, wbMemOut;
+wire [`WORD] wbNextPC, wbInst, wbALUOut, wbALUOutHi, wbMemOut;
 wire wbMemRead;
 StageRegWB u_StageRegWB(
 	.clk            (clk),
-    .memNextPC       (memNextPC),
+    .memNextPC      (memNextPC),
     .memInstruction (memInst),
     .memALUOut      (memALUOut),
+    .memALUOutHi    (memALUOutHi),
     .memMemOut      (readMemData),
     .memWriteReg    (memWriteReg),
     .memMemRead     (memMemRead),
-    .wbNextPC        (wbNextPC),
+    .memWriteLoHi   (memWriteLoHi),
+    .wbNextPC       (wbNextPC),
     .wbInstruction  (wbInst),
     .wbALUOut       (wbALUOut),
+    .wbALUOutHi     (wbALUOutHi),
     .wbMemOut       (wbMemOut),
     .wbWriteReg     (wbWriteReg),
-    .wbMemRead      (wbMemRead)
+    .wbMemRead      (wbMemRead),
+    .wbWriteLoHi    (wbWriteLoHi)
 );
 
 
@@ -239,11 +256,15 @@ Forward u_Forward(
     .wbWriteReg     (wbWriteReg),
     .memMemRead     (memMemRead),
     .wbMemRead      (wbMemRead),
+    .memWriteLoHi   (memWriteLoHi),
+    .wbWriteLoHi    (wbWriteLoHi),
     .memALUOut      (memALUOut),
+    .memALUOutHi    (memALUOutHi),
     .wbALUOut       (wbALUOut),
+    .wbALUOutHi     (wbALUOutHi),
     .wbMemOut       (wbMemOut),
-    .memNextPC       (memNextPC),
-    .wbNextPC        (wbNextPC),
+    .memNextPC      (memNextPC),
+    .wbNextPC       (wbNextPC),
     .exInstruction  (exInst),
     .memInstruction (memInst),
     .wbInstruction  (wbInst),

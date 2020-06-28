@@ -10,7 +10,9 @@
 module Forward(
            input wire [ `REG] memWriteReg, wbWriteReg,
            input wire         memMemRead, wbMemRead,
-           input wire [`WORD] memALUOut, wbALUOut, wbMemOut,
+           input wire         memWriteLoHi, wbWriteLoHi,
+           input wire [`WORD] memALUOut, memALUOutHi,
+           input wire [`WORD] wbALUOut, wbALUOutHi, wbMemOut,
            input wire [`WORD] memNextPC, wbNextPC,
 
            input wire [`WORD] exInstruction, memInstruction, wbInstruction,
@@ -32,11 +34,13 @@ IsLink u_IsLink_wb(
            .isLink      (wbIsLink      )
        );
 
-wire useRs, useRt;
+wire useRs, useRt, useLo, useHi;
 RegUse u_RegUse(
            .instruction (exInstruction ),
            .useRs       (useRs         ),
-           .useRt       (useRt         )
+           .useRt       (useRt         ),
+           .useLo       (useLo         ),
+           .useHi       (useHi         )
        );
 
 always @(*) begin
@@ -106,6 +110,32 @@ always @(*) begin
                 rtFwd = 1;
                 rtFwdData = memALUOut;
             end
+        end
+    end
+
+
+    // FOR LO, HI => only rs will use them
+    // forward lo, hi from WB
+    if (wbWriteLoHi) begin
+        if (useLo) begin
+            rsFwd = 1;
+            rsFwdData = wbALUOut;
+        end
+        if (useHi) begin
+            rsFwd = 1;
+            rsFwdData = wbALUOutHi;
+        end
+    end
+
+    // forward lo, hi from MEM
+    if (memWriteLoHi) begin
+        if (useLo) begin
+            rsFwd = 1;
+            rsFwdData = memALUOut;
+        end
+        if (useHi) begin
+            rsFwd = 1;
+            rsFwdData = memALUOutHi;
         end
     end
 end

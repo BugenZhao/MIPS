@@ -9,7 +9,8 @@
 
 module WriteReg(
            input wire [`WORD] instruction,
-           output reg [ `REG] writeReg
+           output reg [ `REG] writeReg,
+           output reg         writeLoHi
        );
 
 wire [`OPC] opcode = `GET_OPC(instruction);
@@ -50,6 +51,8 @@ always @(*) begin
             writeReg = 5'bxxxxx;
         end
     endcase
+
+    writeLoHi = opcode == `OPC_SPECIAL && (funct == `FUN_MULT || funct == `FUN_MULTU);
 end
 
 endmodule // WriteReg

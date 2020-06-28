@@ -11,14 +11,18 @@ module StageRegMEM(
            input clk,
 
            input wire [`WORD] exNextPC, exInstruction,
-           input wire [`WORD] exALUOut, exWriteToMemData,
+           input wire [`WORD] exALUOut, exALUOutHi,
+           input wire [`WORD] exWriteToMemData,
            input wire [ `REG] exWriteReg,
+           input wire         exWriteLoHi,
            input wire         exMemRead, exMemWrite,
            input wire [ `MMD] exMemMode,
 
            output reg [`WORD] memNextPC, memInstruction,
-           output reg [`WORD] memALUOut, memWriteToMemData,
+           output reg [`WORD] memALUOut, memALUOutHi,
+           output reg [`WORD] memWriteToMemData,
            output reg [ `REG] memWriteReg,
+           output reg         memWriteLoHi,
            output reg         memMemRead, memMemWrite,
            output reg [ `MMD] memMemMode
        );
@@ -27,8 +31,10 @@ always @(negedge clk) begin
     memNextPC <= exNextPC;
     memInstruction <= exInstruction;
     memALUOut <= exALUOut;
+    memALUOutHi <= exALUOutHi;
     memWriteToMemData <= exWriteToMemData;
     memWriteReg <= exWriteReg;
+    memWriteLoHi <= exWriteLoHi;
     memMemRead <= exMemRead;
     memMemWrite <= exMemWrite;
     memMemMode <= exMemMode;

@@ -9,7 +9,7 @@
 
 module RegUse(
     input wire [`WORD] instruction,
-    output reg useRs, useRt
+    output reg useRs, useRt, useLo, useHi
 );
 
 wire [`OPC] opcode = `GET_OPC(instruction);
@@ -25,6 +25,9 @@ always @(*) begin
     end
     
     if (opcode == `OPC_REGIMM) useRt = 0;
+
+    useLo = opcode == `OPC_SPECIAL && funct == `FUN_MFLO;
+    useHi = opcode == `OPC_SPECIAL && funct == `FUN_MFHI;
 end
 
 endmodule // RegUse

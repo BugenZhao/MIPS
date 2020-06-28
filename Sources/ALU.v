@@ -10,7 +10,7 @@
 module ALU(
            input wire [`WORD] opA, opB,
            input wire [ `FUN] aluFunct,
-           output reg [`WORD] out,
+           output reg [`WORD] out, outHi,
            output reg         zero
        );
 
@@ -52,6 +52,10 @@ always @(*) begin
             out = opB << 16;
         `FUN_SLE:
             out = $signed(opA) <= $signed(opB) ? 1 : 0;
+        `FUN_MFHI, `FUN_MFLO:
+            out = opA;
+        `FUN_MULT, `FUN_MULTU: // FIXME: signed mult
+            {outHi, out} = opA * opB;
         `FUN_JR, `FUN_JALR, `FUN_NO:
             out = 32'hxxxxxxxx;
 

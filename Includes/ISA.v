@@ -53,8 +53,8 @@
 `define FUN_ADDU      6'b100001
 `define FUN_SUB       6'b100010
 `define FUN_SUBU      6'b100011
-// `define FUN_MULT      6'b011000
-// `define FUN_MULTU     6'b011001
+`define FUN_MULT      6'b011000
+`define FUN_MULTU     6'b011001
 // `define FUN_DIV       6'b011010
 // `define FUN_DIVU      6'b011011
 `define FUN_SLT       6'b101010
@@ -75,8 +75,8 @@
 `define FUN_SRAV      6'b000111
 
 // Move
-// `define FUN_MFHI      6'b010000
-// `define FUN_MFLO      6'b010010
+`define FUN_MFHI      6'b010000
+`define FUN_MFLO      6'b010010
 
 // Jump (alu: opA + 0)
 `define FUN_JR        6'b001000
@@ -103,6 +103,7 @@
 `define SHA      4:0
 `define FUN      5:0
 `define WORD    31:0
+`define DWORD   63:0
 `define MMD      1:0
 
 
