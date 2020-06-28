@@ -1,0 +1,23 @@
+
+a.out:     file format elf32-bigmips
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	24090001 	li	t1,1
+   4:	240d0003 	li	t5,3
+   8:	240e0004 	li	t6,4
+	...
+  14:	21290002 	addi	t1,t1,2
+  18:	ac090000 	sw	t1,0(zero)
+  1c:	8c0a0000 	lw	t2,0(zero)
+  20:	01495820 	add	t3,t2,t1
+  24:	01696022 	sub	t4,t3,t1
+  28:	016c6820 	add	t5,t3,t4
+  2c:	01ae082a 	slt	at,t5,t6
+  30:	10200001 	beqz	at,38 <target>
+  34:	21ad0003 	addi	t5,t5,3
+
+00000038 <target>:
+  38:	ac0d0004 	sw	t5,4(zero)
