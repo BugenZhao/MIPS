@@ -6,6 +6,5 @@
     "verilog.linting.linter": "iverilog",
     "verilog.linting.iverilog.arguments": "-y ./ -y ../Sources/ -I ../Includes/ -Wall",
     "verilog.linting.iverilog.runAtFileLocation": true,
-    "verilog.logging.enabled": true,
-    "systemverilog.documentSymbolsPrecision": "declaration"
+    "verilog.logging.enabled": true
 }

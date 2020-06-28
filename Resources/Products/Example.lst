@@ -5,7 +5,7 @@ a.out:     file format elf32-bigmips
 Disassembly of section .text:
 
 00000000 <.text>:
-   0:	241d0100 	li	sp,256
+   0:	241d1000 	li	sp,4096
    4:	241f0400 	li	ra,1024
    8:	012a4020 	add	t0,t1,t2
    c:	21280008 	addi	t0,t1,8

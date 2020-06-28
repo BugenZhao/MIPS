@@ -1,0 +1,66 @@
+
+a.out:     file format elf32-bigmips
+
+
+Disassembly of section .text:
+
+00000008 <_start>:
+   8:	27bdffd8 	addiu	sp,sp,-40
+   c:	afbf0024 	sw	ra,36(sp)
+  10:	afbe0020 	sw	s8,32(sp)
+  14:	afb0001c 	sw	s0,28(sp)
+  18:	03a0f025 	move	s8,sp
+  1c:	00001025 	move	v0,zero
+  20:	8c420000 	lw	v0,0(v0)
+  24:	00000000 	nop
+  28:	afc20010 	sw	v0,16(s8)
+  2c:	24100004 	li	s0,4
+  30:	8fc40010 	lw	a0,16(s8)
+  34:	0c000018 	jal	60 <fibonacci>
+  38:	00000000 	nop
+  3c:	ae020000 	sw	v0,0(s0)
+  40:	00000000 	nop
+  44:	03c0e825 	move	sp,s8
+  48:	8fbf0024 	lw	ra,36(sp)
+  4c:	8fbe0020 	lw	s8,32(sp)
+  50:	8fb0001c 	lw	s0,28(sp)
+  54:	27bd0028 	addiu	sp,sp,40
+  58:	03e00008 	jr	ra
+  5c:	00000000 	nop
+
+00000060 <fibonacci>:
+  60:	27bdffe0 	addiu	sp,sp,-32
+  64:	afbf001c 	sw	ra,28(sp)
+  68:	afbe0018 	sw	s8,24(sp)
+  6c:	afb00014 	sw	s0,20(sp)
+  70:	03a0f025 	move	s8,sp
+  74:	afc40020 	sw	a0,32(s8)
+  78:	8fc20020 	lw	v0,32(s8)
+  7c:	00000000 	nop
+  80:	28420002 	slti	v0,v0,2
+  84:	10400004 	beqz	v0,98 <fibonacci+0x38>
+  88:	00000000 	nop
+  8c:	24020001 	li	v0,1
+  90:	1000000f 	b	d0 <fibonacci+0x70>
+  94:	00000000 	nop
+  98:	8fc20020 	lw	v0,32(s8)
+  9c:	00000000 	nop
+  a0:	2442ffff 	addiu	v0,v0,-1
+  a4:	00402025 	move	a0,v0
+  a8:	0c000018 	jal	60 <fibonacci>
+  ac:	00000000 	nop
+  b0:	00408025 	move	s0,v0
+  b4:	8fc20020 	lw	v0,32(s8)
+  b8:	00000000 	nop
+  bc:	2442fffe 	addiu	v0,v0,-2
+  c0:	00402025 	move	a0,v0
+  c4:	0c000018 	jal	60 <fibonacci>
+  c8:	00000000 	nop
+  cc:	02021021 	addu	v0,s0,v0
+  d0:	03c0e825 	move	sp,s8
+  d4:	8fbf001c 	lw	ra,28(sp)
+  d8:	8fbe0018 	lw	s8,24(sp)
+  dc:	8fb00014 	lw	s0,20(sp)
+  e0:	27bd0020 	addiu	sp,sp,32
+  e4:	03e00008 	jr	ra
+  e8:	00000000 	nop

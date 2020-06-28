@@ -1,0 +1,13 @@
+﻿---
+BasedOnStyle: Google
+AlignAfterOpenBracket: Align
+AllowShortBlocksOnASingleLine: 'true'
+AllowShortCaseLabelsOnASingleLine: 'true'
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: 'true'
+AllowShortLoopsOnASingleLine: 'true'
+IndentWidth: '4'
+TabWidth: '8'
+UseTab: Never
+
+...

@@ -8,9 +8,8 @@
 `include "ISA.v"
 `include "Debug.v"
 
-module PipeSystem_tb;
+module PSAccumulation_tb;
 
-// parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Add.mem";
 parameter textDump = "/Users/bugenzhao/Developer/Codes/Verilog/MIPS/Resources/Products/Accumulation.mem";
 parameter PERIOD   = 10;
 
@@ -29,12 +28,11 @@ initial begin: test
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
     for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
 
+    `memFile[3] = 10; // sum(0..<10) ...
     #2000;
-    // word = {`memFile[8], `memFile[9], `memFile[10], `memFile[11]};
-    // `assert(word, 32'hdeadbeef);
     `assert(`regFile[2], 45);
-    `assert(`memFile[3], 45);
+    `assert(`memFile[3], 45); // == 45 ?
     $finish;
 end
 
-endmodule // PipeSystem_tb
+endmodule // PSAccumulation_tb

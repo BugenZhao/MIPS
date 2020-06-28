@@ -4,7 +4,7 @@ init:
     j		main				# jump to main
 
 worker:
-    lw		$a0, 0($sp)		    # pop 10
+    lw		$a0, 0($sp)		    # pop input
     addi    $sp, $sp, 4
     move 	$v0, $zero		    # $v0 = $zero
     move 	$t0, $zero		    # $t0 = $zero
@@ -18,9 +18,9 @@ worker:
 
 
 main:
-    li		$t0, 10		        # $t0 = 10
+    lw		$t0, 0($zero)		# load input from 0x0
     addi    $sp, $sp, -4
-    sw      $t0, 0($sp)         # push 10
+    sw      $t0, 0($sp)         # push input
     la		$t1, worker
     jalr    $k0, $t1            # call worker
     sw		$v0, 0($zero)

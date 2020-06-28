@@ -27,7 +27,7 @@ all: $(LSTS)
 	$(OBJDUMP) -d a.out > $(OUTDIR)/$(@:.mem=.lst)
 	$(OBJCOPY) --dump-section .text=a.bin a.out
 	$(OBJCOPY) -I binary -O binary --reverse-bytes=4 a.bin r.bin
-	echo "241d0100\n241f0400\n" > $(OUTDIR)/$@
+	echo "241d1000\n241f0400\n" > $(OUTDIR)/$@
 	od -An -v -t x4 r.bin | tr ' ' '\n' | sed '/^$$/d' >> $(OUTDIR)/$@
 	rm a.bin a.out r.bin
 

@@ -24,7 +24,7 @@ Disassembly of section .text:
   28:	03400008 	jr	k0
 
 0000002c <main>:
-  2c:	2408000a 	li	t0,10
+  2c:	8c080000 	lw	t0,0(zero)
   30:	23bdfffc 	addi	sp,sp,-4
   34:	afa80000 	sw	t0,0(sp)
   38:	3c090000 	lui	t1,0x0
