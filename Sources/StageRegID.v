@@ -11,7 +11,7 @@ module StageRegID(
            input clk,
 
            input wire [`WORD] ifNextPC, ifInstruction,
-           input wire         flush,
+           input wire         flush, stall,
 
            output reg [`WORD] idNextPC, idInstruction
        );
@@ -20,6 +20,10 @@ always @(negedge clk) begin
     if (flush) begin
         idNextPC <= ifNextPC;
         idInstruction <= 0;
+    end
+    else if (stall) begin
+        idNextPC <= idNextPC;
+        idInstruction <= idInstruction;
     end
     else begin
         idNextPC <= ifNextPC;

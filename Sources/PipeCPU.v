@@ -30,12 +30,14 @@ PC u_PC(
 
 // --- IF/ID ---
 wire idFlush;
+wire stall;
 wire [`WORD] idNextPC, idInst;
 StageRegID u_StageRegID(
 	.clk           (clk),
     .ifNextPC       (pc + 4),
     .ifInstruction (inst),
     .flush         (idFlush),
+    .stall          (stall),
     .idNextPC       (idNextPC),
     .idInstruction (idInst)
 );
@@ -217,7 +219,6 @@ WriteData u_WriteData(
 
 
 // --- New PC ---
-wire stall;
 NewPC u_NewPC(
 	.pc          (pc),
     .instruction (inst),
