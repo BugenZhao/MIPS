@@ -35,11 +35,11 @@ wire stall;
 wire [`WORD] idNextPC, idInst;
 StageRegID u_StageRegID(
 	.clk           (clk),
-    .ifNextPC       (pc + 4),
+    .ifNextPC      (pc + 4),
     .ifInstruction (inst),
     .flush         (idFlush),
     .stall          (stall),
-    .idNextPC       (idNextPC),
+    .idNextPC      (idNextPC),
     .idInstruction (idInst)
 );
 
@@ -51,18 +51,18 @@ wire [`WORD] wbALUOutHi;
 wire         wbWriteLoHi;
 wire [`WORD] idReg1, idReg2;
 RegisterFile u_RegisterFile(
-	.clk       (clk),
-    .opcode    (`GET_OPC(idInst)),
-    .funct     (`GET_FUN(idInst)),
-    .readReg1  (`GET_RS(idInst)),
-    .readReg2  (`GET_RT(idInst)),
-    .writeReg  (wbWriteReg),
-    .writeLoHi (wbWriteLoHi),
-    .writeData (wbWriteData),
+	.clk         (clk),
+    .opcode      (`GET_OPC(idInst)),
+    .funct       (`GET_FUN(idInst)),
+    .readReg1    (`GET_RS(idInst)),
+    .readReg2    (`GET_RT(idInst)),
+    .writeReg    (wbWriteReg),
+    .writeLoHi   (wbWriteLoHi),
+    .writeData   (wbWriteData),
     .writeDataHi (wbALUOutHi),
-    .regWrite  (1'b1),
-    .readData1 (idReg1),
-    .readData2 (idReg2)
+    .regWrite    (1'b1),
+    .readData1   (idReg1),
+    .readData2   (idReg2)
 );
 
 wire [`WORD] idExtendedImm;
@@ -77,13 +77,13 @@ wire exFlush;
 wire [`WORD] exNextPC, exInst, exReg1, exReg2, exExtendedImm;
 StageRegEX u_StageRegEX(
 	.clk           (clk),
-    .idNextPC       (idNextPC),
+    .idNextPC      (idNextPC),
     .idInstruction (idInst),
     .idReg1        (idReg1),
     .idReg2        (idReg2),
     .idExtendedImm (idExtendedImm),
     .flush         (exFlush),
-    .exNextPC       (exNextPC),
+    .exNextPC      (exNextPC),
     .exInstruction (exInst),
     .exReg1        (exReg1),
     .exReg2        (exReg2),
@@ -97,16 +97,16 @@ wire         rsFwd, rtFwd;
 wire [`WORD] rsFwdData, rtFwdData;
 wire [`WORD] exWriteToMemData;
 Operand u_Operand(
-	.instruction  (exInst),
-    .rsData       (exReg1),
-    .rtData       (exReg2),
-    .extendedImm  (exExtendedImm),
-    .rsFwd        (rsFwd),
-    .rtFwd        (rtFwd),
-    .rsFwdData    (rsFwdData),
-    .rtFwdData    (rtFwdData),
-    .opA          (exOpA),
-    .opB          (exOpB),
+	.instruction    (exInst),
+    .rsData         (exReg1),
+    .rtData         (exReg2),
+    .extendedImm    (exExtendedImm),
+    .rsFwd          (rsFwd),
+    .rtFwd          (rtFwd),
+    .rsFwdData      (rsFwdData),
+    .rtFwdData      (rtFwdData),
+    .opA            (exOpA),
+    .opB            (exOpB),
     .writeToMemData (exWriteToMemData)
 );
 
@@ -140,7 +140,7 @@ wire exTaken;
 wire [`WORD] exBranchAddr;
 Taken u_Taken(
 	.instruction (exInst),
-    .nextPC       (exNextPC),
+    .nextPC      (exNextPC),
     .extendedImm (exExtendedImm),
     .aluZero     (exALUZero),
     .taken       (exTaken),

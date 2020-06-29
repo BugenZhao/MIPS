@@ -26,21 +26,21 @@ wire [`REG] rt = `GET_RT(exInstruction);
 
 wire memIsLink, wbIsLink;
 IsLink u_IsLink_mem(
-           .instruction (memInstruction ),
-           .isLink      (memIsLink      )
+           .instruction (memInstruction),
+           .isLink      (memIsLink)
        );
 IsLink u_IsLink_wb(
-           .instruction (wbInstruction ),
-           .isLink      (wbIsLink      )
+           .instruction (wbInstruction),
+           .isLink      (wbIsLink)
        );
 
 wire useRs, useRt, useLo, useHi;
 RegUse u_RegUse(
-           .instruction (exInstruction ),
-           .useRs       (useRs         ),
-           .useRt       (useRt         ),
-           .useLo       (useLo         ),
-           .useHi       (useHi         )
+           .instruction (exInstruction),
+           .useRs       (useRs),
+           .useRt       (useRt),
+           .useLo       (useLo),
+           .useHi       (useHi)
        );
 
 always @(*) begin

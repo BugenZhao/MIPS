@@ -8,9 +8,9 @@
 `include "ISA.v"
 
 module RegUse(
-    input wire [`WORD] instruction,
-    output reg useRs, useRt, useLo, useHi
-);
+           input wire [`WORD] instruction,
+           output reg useRs, useRt, useLo, useHi
+       );
 
 wire [`OPC] opcode = `GET_OPC(instruction);
 wire [`FUN] funct  = `GET_FUN(instruction);
@@ -23,7 +23,7 @@ always @(*) begin
         useRs = 0;
         useRt = 0;
     end
-    
+
     if (opcode == `OPC_REGIMM) useRt = 0;
 
     useLo = opcode == `OPC_SPECIAL && funct == `FUN_MFLO;

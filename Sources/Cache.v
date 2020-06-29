@@ -57,7 +57,8 @@ always @(pc, offset, index, tag, imInstReady, imQdata) begin
             instReady = 1;
             inst = blocks[index][offset];
             hit = 2;
-        end else begin
+        end
+        else begin
             imAddr = pc;
             valid[index] = 0;
             instReady = 0;

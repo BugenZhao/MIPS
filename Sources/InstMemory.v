@@ -33,7 +33,8 @@ always @(posedge clk) begin
     if (lineAddrBuffer == firstIndex) begin
         ready <= 1;
         qdata <= { memFile[firstIndex], memFile[firstIndex + 1], memFile[firstIndex + 2], memFile[firstIndex + 3] };
-    end else begin
+    end
+    else begin
         lineAddrBuffer <= firstIndex;
         ready <= 0;
         qdata <= 128'h0;

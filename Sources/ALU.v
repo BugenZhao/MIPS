@@ -16,7 +16,7 @@ module ALU(
 
 always @(*) begin
     outHi = 32'hxxxxxxxx;
-    
+
     case (aluFunct)
         `FUN_ADD:
             out = opA + opB;

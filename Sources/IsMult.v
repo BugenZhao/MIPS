@@ -8,9 +8,9 @@
 `include "ISA.v"
 
 module IsMult (
-    input wire  [`WORD] instruction,
-    output wire isMult
-);
+           input wire  [`WORD] instruction,
+           output wire isMult
+       );
 
 wire [`OPC] opcode = `GET_OPC(instruction);
 wire [`FUN] funct  = `GET_FUN(instruction);

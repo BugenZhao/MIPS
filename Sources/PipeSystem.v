@@ -24,19 +24,19 @@ wire [`QWORD] imQdata;
 wire          imInstReady;
 
 Cache u_Cache(
-	.pc          (pc          ),
-    .inst        (instruction ),
-    .instReady   (instReady   ),
-    .imAddr      (imAddr      ),
-    .imQdata     (imQdata     ),
-    .imInstReady (imInstReady )
+	.pc          (pc),
+    .inst        (instruction),
+    .instReady   (instReady),
+    .imAddr      (imAddr),
+    .imQdata     (imQdata),
+    .imInstReady (imInstReady)
 );
 
 InstMemory #(textDump) u_InstMemory(
-	.clk   (clk   ),
-    .addr  (imAddr  ),
-    .qdata (imQdata ),
-    .ready (imInstReady )
+	.clk   (clk),
+    .addr  (imAddr),
+    .qdata (imQdata),
+    .ready (imInstReady)
 );
 
 
@@ -45,28 +45,28 @@ wire [`WORD] writeData, readData;
 wire [ `MMD] memMode;
 wire        memRead, memWrite;
 DataMemory u_DataMemory(
-	.clk       (clk         ),
-    .address   (dataAddress ),
-    .writeData (writeData   ),
-    .mode      (memMode     ),
-    .memRead   (memRead     ),
-    .memWrite  (memWrite    ),
-    .readData  (readData    )
+	.clk       (clk),
+    .address   (dataAddress),
+    .writeData (writeData),
+    .mode      (memMode),
+    .memRead   (memRead),
+    .memWrite  (memWrite),
+    .readData  (readData)
 );
 
 
 // --- MIPS CPU ---
 PipeCPU u_PipeCPU(
-	.clk          (clk          ),
-    .pc           (pc           ),
-    .inst         (instruction  ),
+	.clk          (clk),
+    .pc           (pc),
+    .inst         (instruction),
     .instReady    (instReady),
-    .dataAddress  (dataAddress  ),
-    .writeMemData (writeData    ),
-    .memRead      (memRead      ),
-    .memWrite     (memWrite     ),
-    .memMode      (memMode      ),
-    .readMemData  (readData     )
+    .dataAddress  (dataAddress),
+    .writeMemData (writeData),
+    .memRead      (memRead),
+    .memWrite     (memWrite),
+    .memMode      (memMode),
+    .readMemData  (readData)
 );
 
 endmodule // PipeSystem
