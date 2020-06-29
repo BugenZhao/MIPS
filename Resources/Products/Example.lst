@@ -33,3 +33,6 @@ Disassembly of section .text:
   64:	00000000 	nop
   68:	0c00048d 	jal	0x1234
   6c:	00000000 	nop
+  70:	01090018 	mult	t0,t1
+  74:	00005012 	mflo	t2
+	...

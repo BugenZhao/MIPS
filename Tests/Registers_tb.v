@@ -18,27 +18,36 @@ end
 /*iverilog */
 
 reg clk;
+reg  [ `OPC] opcode;
+reg  [ `FUN] funct;
 reg  [ `REG] readReg1;
 reg  [ `REG] readReg2;
 reg  [ `REG] writeReg;
+reg          writeLoHi;
 reg  [`WORD] writeData;
-reg         regWrite;
+reg  [`WORD] writeDataHi;
+reg          regWrite;
 wire [`WORD] readData1;
 wire [`WORD] readData2;
+
 
 
 parameter PERIOD = 100;
 always #(PERIOD) clk = !clk;
 
 RegisterFile u_RegisterFile(
-	.clk       (clk       ),
-    .readReg1  (readReg1  ),
-    .readReg2  (readReg2  ),
-    .writeReg  (writeReg  ),
-    .writeData (writeData ),
-    .regWrite  (regWrite  ),
-    .readData1 (readData1 ),
-    .readData2 (readData2 )
+	.clk         (clk         ),
+    .opcode      (opcode      ),
+    .funct       (funct       ),
+    .readReg1    (readReg1    ),
+    .readReg2    (readReg2    ),
+    .writeReg    (writeReg    ),
+    .writeLoHi   (writeLoHi   ),
+    .writeData   (writeData   ),
+    .writeDataHi (writeDataHi ),
+    .regWrite    (regWrite    ),
+    .readData1   (readData1   ),
+    .readData2   (readData2   )
 );
 
 initial begin
@@ -66,6 +75,24 @@ initial begin
     #40; // 560
     `assert(readData1, 'hbeef);
     `assert(readData2, 0);
+
+    #120; // 680
+    writeData = 'hbeefbeef;
+    writeDataHi = 'hdeaddead;
+    writeLoHi = 1;
+    
+    #200; // 880
+    opcode = `OPC_SPECIAL;
+    funct = `FUN_MFHI;
+
+    #40;
+    `assert(readData1, 'hdeaddead);
+    
+    #40;
+    funct = `FUN_MFLO;
+
+    #40;
+    `assert(readData1, 'hbeefbeef);
 
     $finish;
 end

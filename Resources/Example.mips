@@ -19,3 +19,5 @@ sh      $t1, 888($s1)
 j		888888				# jump to 888888
 jr		$ra					# jump to $ra
 jal		0x1234				# jump to 0x1234 and save position to $ra
+mult	$t0, $t1			# $t0 * $t1 = Hi and Lo registers
+mflo	$t2					# copy Lo to $t2

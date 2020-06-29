@@ -33,6 +33,8 @@
 `define EXAMPLE_SB      32'ha2290378
 `define EXAMPLE_SH      32'ha6290378
 `define EXAMPLE_JAL     32'h0c00048d
+`define EXAMPLE_MULT    32'h01090018
+`define EXAMPLE_MFLO    32'h00005012
 
 `define  wordAt(i) {`memFile[i], `memFile[i+1], `memFile[i+2], `memFile[i+3]}
 `define dwordAt(i) {`memFile[i], `memFile[i+1], `memFile[i+2], `memFile[i+3], `memFile[i+4], `memFile[i+5], `memFile[i+6], `memFile[i+7]}

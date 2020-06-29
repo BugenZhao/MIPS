@@ -19,10 +19,12 @@ end
 
 reg [`WORD] instruction;
 wire [`REG] writeReg;
+wire        writeLoHi;
 
 WriteReg u_WriteReg(
 	.instruction (instruction ),
-    .writeReg    (writeReg    )
+    .writeReg    (writeReg    ),
+    .writeLoHi   (writeLoHi)
 );
 
 
@@ -38,6 +40,10 @@ initial begin
 
     #100 instruction = `EXAMPLE_SB;
     #100 `assert(writeReg, `ZERO);
+
+    #100 instruction = `EXAMPLE_MULT;
+    #100 `assert(writeReg, `ZERO);
+         `assert(writeLoHi, 1);
     
     $finish;
 end
