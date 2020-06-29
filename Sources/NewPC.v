@@ -10,6 +10,7 @@
 module NewPC(
            input wire [`WORD] pc,
            input wire [`WORD] instruction,
+           input wire         instReady,
 
            input wire [`WORD] jumpRegAddr,
            input wire         isJumpReg,
@@ -25,7 +26,7 @@ wire [`OPC] opcode    = instruction[31:26];
 wire [`FUN] funct     = instruction[ 5: 0];
 wire [25:0] jumpIndex = instruction[25: 0];
 
-wire [`WORD] nextAddr   = pc + 4;
+wire [`WORD] nextAddr   = instReady ? pc + 4 : pc;
 wire [`WORD] jumpAddr   = {nextAddr[31:28], (jumpIndex << 2)};
 
 always @(*) begin

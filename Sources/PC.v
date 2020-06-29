@@ -9,20 +9,16 @@
 
 module PC(
            input clk,
-           input wire  [`WORD] newPC,
-           output wire [`WORD] pc
+           input wire [`WORD] newPC,
+           output reg [`WORD] pc
        );
 
-reg [`WORD] pcFile;
-
 initial begin: init
-    pcFile = 32'h0;
+    pc = 32'h0;
 end
 
 always @(negedge clk) begin
-    pcFile <= newPC;
+    pc <= newPC;
 end
-
-assign pc = pcFile;
 
 endmodule

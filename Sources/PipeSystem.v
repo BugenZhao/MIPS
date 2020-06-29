@@ -18,9 +18,12 @@ initial clk = 1;
 // --- Memory ---
 wire [`WORD] pc;
 wire [`WORD] instruction;
+wire         instReady;
 InstMemory #(textDump) u_InstMemory(
+    .clk         (clk),
 	.pc          (pc          ),
-    .instruction (instruction )
+    .instruction (instruction),
+    .instReady   (instReady)
 );
 
 wire [`WORD] dataAddress;
@@ -43,6 +46,7 @@ PipeCPU u_PipeCPU(
 	.clk          (clk          ),
     .pc           (pc           ),
     .inst         (instruction  ),
+    .instReady    (instReady),
     .dataAddress  (dataAddress  ),
     .writeMemData (writeData    ),
     .memRead      (memRead      ),

@@ -8,8 +8,10 @@
 `include "ISA.v"
 
 module InstMemory #(parameter textDump = "path/to/text/dump") (
-           input wire  [`WORD] pc,
-           output wire [`WORD] instruction
+           input clk,
+           input wire [`WORD] pc,
+           output reg [`WORD] instruction,
+           output reg         instReady
        );
 
 parameter memSize = 'h1ffff;
@@ -21,8 +23,20 @@ initial begin: init
         memFile[i] = 0;
     end
     $readmemh(textDump, memFile);
+    instReady = 0;
 end
 
-assign instruction = memFile[pc >> 2];
+reg [`WORD] pcBuffer = 32'h00000000;
+
+always @(posedge clk) begin
+    if (pcBuffer == pc) begin
+        instReady <= 1;
+        instruction <= memFile[pc >> 2];
+    end else begin
+        pcBuffer <= pc;
+        instReady <= 0;
+        instruction <= 32'h00000000;
+    end
+end
 
 endmodule

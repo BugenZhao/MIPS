@@ -12,6 +12,7 @@ module PipeCPU(
 
            output wire [`WORD] pc,
            input  wire [`WORD] inst,
+           input  wire         instReady,
 
            output wire [`WORD] dataAddress, writeMemData,
            output wire         memRead, memWrite,
@@ -240,6 +241,7 @@ WriteData u_WriteData(
 NewPC u_NewPC(
 	.pc          (pc),
     .instruction (inst),
+    .instReady   (instReady),
     .jumpRegAddr (exOpA),
     .isJumpReg   (exIsJumpReg),
     .branchAddr  (exBranchAddr),
