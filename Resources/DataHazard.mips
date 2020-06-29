@@ -1,19 +1,19 @@
-    .set noreorder
+	.set noreorder
 
 main:
-    li		$t1, 1		    # $t1 = 1
-    li		$t5, 3		    # $t5 = 3
-    li		$t6, 4		    # $t6 = 4
-    nop
-    nop
-    addi	$t1, $t1, 2	        # $t1 = $t1 + 2
-    sw		$t1, 0($zero)
-    lw		$t2, 0($zero)
-    add		$t3, $t2, $t1	    # $t3 = $t2 + $t1 = 6, load and use
-    sub		$t4, $t3, $t1		# $t4 = $t3 - $t1 = 3
-    add		$t5, $t3, $t4		# $t5 = $t3 + $t4 = 9
-    bge		$t5, $t6, target	# if $t5 >= 4 then target
-    addi	$t5, $t5, 3			# $t5 = $t5 + 3 = 12, should not be executed
-    
+	li		$t1, 1			# $t1 = 1
+	li		$t5, 3			# $t5 = 3
+	li		$t6, 4			# $t6 = 4
+	nop
+	nop
+	addi	$t1, $t1, 2		# $t1 = $t1 + 2
+	sw		$t1, 0($zero)
+	lw		$t2, 0($zero)
+	add		$t3, $t2, $t1		# $t3 = $t2 + $t1 = 6, load and use
+	sub		$t4, $t3, $t1		# $t4 = $t3 - $t1 = 3
+	add		$t5, $t3, $t4		# $t5 = $t3 + $t4 = 9
+	bge		$t5, $t6, target	# if $t5 >= 4 then target
+	addi	$t5, $t5, 3			# $t5 = $t5 + 3 = 12, should not be executed
+	
 target:
-    sw      $t5, 4($zero)
+	sw		$t5, 4($zero)

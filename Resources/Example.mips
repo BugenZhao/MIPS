@@ -1,21 +1,21 @@
-li      $sp, 0x1000
-li      $ra, 0x400
+li		$sp, 0x1000
+li		$ra, 0x400
 
 add		$t0, $t1, $t2		# $t0 = $t1 + $t2
 addi	$t0, $t1, 8			# $t0 = $t1 + 8
 and		$t0, $t1, $t2
 and		$t0, $t1, 8
 sub		$t0, $t1, $t2		# $t0 = $t1 - $t2
-sll     $t0, $t1, 4
-srav    $t0, $t1, $t2
-lui     $t0, 0x1234
+sll		$t0, $t1, 4
+srav	$t0, $t1, $t2
+lui		$t0, 0x1234
 bgez	$t0, 888
 bgtz	$t0, 888
 beq		$t0, $t1, 888		# if $t0 == $t1 then 888
 lb		$t1, 888($s1)
 lw		$t1, 888($s1)
 sb		$t1, 888($s1)
-sh      $t1, 888($s1)
+sh		$t1, 888($s1)
 j		888888				# jump to 888888
 jr		$ra					# jump to $ra
 jal		0x1234				# jump to 0x1234 and save position to $ra

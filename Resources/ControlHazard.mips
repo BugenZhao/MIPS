@@ -1,40 +1,40 @@
-    .set noreorder
+	.set noreorder
 
 main:
-    li      $t3, 0x1
-    move 	$t4, $t3		# $t4 = $t3 = 0x1
-    li		$t1, 0x88		# $t1 = 0x88
-    li		$t2, 0x88		# $t2 = 0x88
-    nop
-    nop
-    nop
-    beq		$t1, $t2, l1	# if $t1 == $t2 then l1
-    addi	$t3, $t3, 1			# $t3 = $t3 + 1
-    addi	$t4, $t4, 1			# $t4 = $t4 + 1     
+	li		$t3, 0x1
+	move 	$t4, $t3		# $t4 = $t3 = 0x1
+	li		$t1, 0x88		# $t1 = 0x88
+	li		$t2, 0x88		# $t2 = 0x88
+	nop
+	nop
+	nop
+	beq		$t1, $t2, l1	# if $t1 == $t2 then l1
+	addi	$t3, $t3, 1		# $t3 = $t3 + 1
+	addi	$t4, $t4, 1		# $t4 = $t4 + 1     
 l1:
-    nop
-    nop
-    # $t3, $t4 should be still 0x1
-    j		l2				# jump to l2
-    addi	$t3, $t3, 1			# $t3 = $t3 + 1
-    addi	$t4, $t4, 1			# $t4 = $t4 + 1 
+	nop
+	nop
+	# $t3, $t4 should be still 0x1
+	j		l2				# jump to l2
+	addi	$t3, $t3, 1		# $t3 = $t3 + 1
+	addi	$t4, $t4, 1		# $t4 = $t4 + 1 
 l2:
-    nop
-    nop
-    # $t3, $t4 should be still 0x1
-    jal     l3
-    addi	$t3, $t3, 1			# $t3 = $t3 + 1
-    addi	$t4, $t4, 1			# $t4 = $t4 + 1 
+	nop
+	nop
+	# $t3, $t4 should be still 0x1
+	jal		l3
+	addi	$t3, $t3, 1		# $t3 = $t3 + 1
+	addi	$t4, $t4, 1		# $t4 = $t4 + 1 
 l3:
-    nop
-    nop
-    # $t3, $t4 should be still 0x1
-    la		$ra, l4
-    nop
-    nop
-    jr      $ra
-    addi	$t3, $t3, 1			# $t3 = $t3 + 1
-    addi	$t4, $t4, 1			# $t4 = $t4 + 1 
+	nop
+	nop
+	# $t3, $t4 should be still 0x1
+	la		$ra, l4
+	nop
+	nop
+	jr		$ra
+	addi	$t3, $t3, 1		# $t3 = $t3 + 1
+	addi	$t4, $t4, 1		# $t4 = $t4 + 1 
 l4:
-    nop
-    nop
+	nop
+	nop

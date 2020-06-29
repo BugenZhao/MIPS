@@ -1,27 +1,27 @@
     .set noreorder
 init:
-    addi	$sp, $zero, 0x20    # $sp = 0x20
-    j		main				# jump to main
+    addi    $sp, $zero, 0x20    # $sp = 0x20
+    j       main                # jump to main
 
 worker:
-    lw		$a0, 0($sp)		    # pop input
+    lw      $a0, 0($sp)         # pop input
     addi    $sp, $sp, 4
-    move 	$v0, $zero		    # $v0 = $zero
-    move 	$t0, $zero		    # $t0 = $zero
-    j		.test				# jump to .test
+    move    $v0, $zero          # $v0 = $zero
+    move    $t0, $zero          # $t0 = $zero
+    j       .test               # jump to .test
 .loop:
-    addu	$v0, $t0, $v0		# $v0 = $t0 + $v0
-    addiu	$t0, $t0, 1			# $t0 = $t0 + 1
+    addu    $v0, $t0, $v0       # $v0 = $t0 + $v0
+    addiu   $t0, $t0, 1         # $t0 = $t0 + 1
 .test:
-    bne		$t0, $a0, .loop	    # if $t0 != $a0 then .loop
-    jr		$k0					# jump to $k0
+    bne     $t0, $a0, .loop     # if $t0 != $a0 then .loop
+    jr      $k0                 # jump to $k0
 
 
 main:
-    lw		$t0, 0($zero)		# load input from 0x0
+    lw      $t0, 0($zero)       # load input from 0x0
     addi    $sp, $sp, -4
     sw      $t0, 0($sp)         # push input
-    la		$t1, worker
+    la      $t1, worker
     jalr    $k0, $t1            # call worker
-    sw		$v0, 0($zero)
+    sw      $v0, 0($zero)
     
