@@ -30,3 +30,5 @@
 `define EXAMPLE_J       32'h0803640e
 `define EXAMPLE_JR      32'h03e00008
 `define EXAMPLE_NOP     32'h00000000
+`define EXAMPLE_SB      32'ha2290378
+`define EXAMPLE_SH      32'ha6290378
