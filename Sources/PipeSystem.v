@@ -16,15 +16,29 @@ always #(PERIOD) clk = !clk;
 initial clk = 1;
 
 // --- Memory ---
-wire [`WORD] pc;
-wire [`WORD] instruction;
-wire         instReady;
-InstMemory #(textDump) u_InstMemory(
-    .clk         (clk),
+wire [ `WORD] pc;
+wire [ `WORD] instruction;
+wire          instReady;
+wire [ `WORD] imAddr;
+wire [`QWORD] imQdata;
+wire          imInstReady;
+
+Cache u_Cache(
 	.pc          (pc          ),
-    .instruction (instruction),
-    .instReady   (instReady)
+    .inst        (instruction ),
+    .instReady   (instReady   ),
+    .imAddr      (imAddr      ),
+    .imQdata     (imQdata     ),
+    .imInstReady (imInstReady )
 );
+
+InstMemory #(textDump) u_InstMemory(
+	.clk   (clk   ),
+    .addr  (imAddr  ),
+    .qdata (imQdata ),
+    .ready (imInstReady )
+);
+
 
 wire [`WORD] dataAddress;
 wire [`WORD] writeData, readData;

@@ -104,6 +104,7 @@
 `define FUN      5:0
 `define WORD    31:0
 `define DWORD   63:0
+`define QWORD  127:0
 `define MMD      1:0
 
 

@@ -9,9 +9,9 @@
 
 module InstMemory #(parameter textDump = "path/to/text/dump") (
            input clk,
-           input wire [`WORD] pc,
-           output reg [`WORD] instruction,
-           output reg         instReady
+           input wire [ `WORD] addr,
+           output reg [`QWORD] qdata,
+           output reg          ready
        );
 
 parameter memSize = 'h1ffff;
@@ -23,19 +23,20 @@ initial begin: init
         memFile[i] = 0;
     end
     $readmemh(textDump, memFile);
-    instReady = 0;
+    ready = 0;
 end
 
-reg [`WORD] pcBuffer = 32'h00000000;
+wire [29:0] firstIndex = addr >> 4 << 2; // 4 instructions => 16 bytes per line
+reg  [29:0] lineAddrBuffer = 0;
 
 always @(posedge clk) begin
-    if (pcBuffer == pc) begin
-        instReady <= 1;
-        instruction <= memFile[pc >> 2];
+    if (lineAddrBuffer == firstIndex) begin
+        ready <= 1;
+        qdata <= { memFile[firstIndex], memFile[firstIndex + 1], memFile[firstIndex + 2], memFile[firstIndex + 3] };
     end else begin
-        pcBuffer <= pc;
-        instReady <= 0;
-        instruction <= 32'h00000000;
+        lineAddrBuffer <= firstIndex;
+        ready <= 0;
+        qdata <= 128'h0;
     end
 end
 
