@@ -4,6 +4,7 @@
 
   <details>
   <summary>Details</summary>
+  
     - Logical
       - AND
       - OR
