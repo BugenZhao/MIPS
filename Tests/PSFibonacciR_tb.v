@@ -23,7 +23,7 @@ initial begin: test
     $dumpvars;
 
     `memFile[3] = 10; // fibonacci[10] ...
-    #150000;
+    #300000;
     `assert(`memFile[7], 89); // == 89 ?
 
     $finish;

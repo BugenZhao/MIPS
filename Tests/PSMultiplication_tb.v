@@ -25,12 +25,10 @@ initial begin: test
     $dumpvars;
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
     for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
-    $dumpvars(u_PipeSystem.u_PipeCPU.u_RegisterFile.hi);
-    $dumpvars(u_PipeSystem.u_PipeCPU.u_RegisterFile.lo);
 
     `wordAt(0) = 111111;
     `wordAt(4) = 222222;
-    #500;
+    #1000;
     `assert(`dwordAt(8),   64'd24_691_308_642); // unsigned
     `assert(`dwordAt(16), -64'd24_691_308_642); // signed
     $finish;

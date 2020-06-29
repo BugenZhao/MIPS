@@ -29,7 +29,7 @@ initial begin: test
     for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
 
     `memFile[3] = 10; // sum(0..<10) ...
-    #2000;
+    #3000;
     `assert(`regFile[`V0], 45);
     `assert(`memFile[3], 45); // == 45 ?
     $finish;

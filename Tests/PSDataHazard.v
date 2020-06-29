@@ -28,7 +28,7 @@ initial begin: test
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
     for (i = 0; i < 8; i++) $dumpvars(1, `memFile[i]);
 
-    #1000;
+    #2000;
     `assert(`regFile[`T1], 3);
     `assert(`regFile[`T2], 3);
     `assert(`regFile[`T3], 6);

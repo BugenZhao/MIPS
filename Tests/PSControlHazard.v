@@ -27,7 +27,7 @@ initial begin: test
     $dumpvars;
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
 
-    #1000;
+    #2000;
     `assert(`regFile[`T3], 1);
     `assert(`regFile[`T4], 1);
     

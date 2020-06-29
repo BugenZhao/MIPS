@@ -26,7 +26,7 @@ initial begin: test
     for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
     for (i = 0; i < 44; i++) $dumpvars(1, `memFile[i]);
 
-    #60000;
+    #100000;
     `assert(`wordAt(0), 4862); // the tenth Catalan number!
     $finish;
 end
