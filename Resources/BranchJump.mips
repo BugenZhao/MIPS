@@ -1,0 +1,51 @@
+    .set noreorder
+    j       main
+
+inc_t5:
+    addi	$t5, $t5, 1
+    jr      $ra
+
+main:
+    move 	$t0, $zero		# $t0 = $zero
+    li		$t1, 0x88		# $t1 = 0x88
+    li		$t2, 0x99		# $t2 = 0x99
+    bge		$t2, $t1, l1	# if $t2 >= $t1 then l1
+    addi	$t0, $t0, 1		# $t0 = $t0 + 1
+l1:
+    li		$t1, 0x88
+    li		$t2, 0x88
+    beq		$t2, $t1, l2
+    addi	$t0, $t0, 1
+l2:
+    b       l3
+    addi	$t0, $t0, 1
+l3:
+    bgt     $t1, $zero, l4
+    addi	$t0, $t0, 1
+l4:
+    li      $t3, -8
+    blez    $t3, l5
+    addi	$t0, $t0, 1
+l5:
+    bne     $t1, $t3, l6
+    addi	$t0, $t0, 1
+l6:
+    bltz    $t3, l7
+    addi	$t0, $t0, 1
+l7:
+    bltzal  $t3, l8
+    addi	$t0, $t0, 1
+l8:
+    bgez    $zero, l9
+    addi	$t0, $t0, 1
+l9:
+    bgezal  $zero, l10
+    addi	$t0, $t0, 1
+l10:
+    la		$t1, inc_t5
+    jalr    $t1
+    jal     inc_t5
+    j       l11
+    addi	$t0, $t0, 1
+l11:
+    nop
