@@ -22,7 +22,7 @@ reg [`WORD] regFile[0:31];
 
 initial begin: init
     integer i;
-    for (i = 0; i < 32; i++) begin
+    for (i = 0; i < 32; i = i + 1) begin
         regFile[i] = 0;
     end
 end

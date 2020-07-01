@@ -32,7 +32,7 @@ u_InstMemory(
 initial begin
     #10 pc = 32'h0;
     #10 `assert(instruction, `EXAMPLE_ADD);
-    #10 pc += 4;
+    #10 pc = pc + 4;
     #10 `assert(instruction, `EXAMPLE_ADDI);
     #10;
     $finish;
