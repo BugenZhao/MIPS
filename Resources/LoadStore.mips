@@ -1,0 +1,12 @@
+    .set noreorder
+main:
+    lui     $t1, 0xffff
+    ori     $t1, $t1, 0x8000
+    sw      $t1, 0($zero)
+    lh      $t2, 2($zero)       # 0xffff8000
+    lhu     $t3, 2($zero)       # 0x00008000
+    lb      $t4, 0($zero)       # 0xffffffff
+    lbu     $t5, 0($zero)       # 0x000000ff
+    li      $t1, 0x90
+    sb      $t1, 3($zero)
+    lw      $t6, 0($zero)       # 0xffff8090
