@@ -22,7 +22,7 @@ reg [7:0] memFile[0:memSize];
 
 initial begin: init
     integer i;
-    for (i = 0; i < memSize; i++) begin
+    for (i = 0; i < memSize; i = i + 1) begin
         memFile[i] = 0;
     end
 end

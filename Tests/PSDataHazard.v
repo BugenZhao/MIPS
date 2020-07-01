@@ -25,8 +25,8 @@ initial begin: test
 
     $dumpfile("wave.vcd");
     $dumpvars;
-    for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
-    for (i = 0; i < 8; i++) $dumpvars(1, `memFile[i]);
+    for (i = 1; i < 32; i = i + 1) $dumpvars(1, `regFile[i]);
+    for (i = 0; i < 8; i = i + 1) $dumpvars(1, `memFile[i]);
 
     #2000;
     `assert(`regFile[`T1], 3);

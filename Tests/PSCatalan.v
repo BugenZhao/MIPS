@@ -23,8 +23,8 @@ initial begin: test
 
     $dumpfile("wave.vcd");
     $dumpvars;
-    for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
-    for (i = 0; i < 44; i++) $dumpvars(1, `memFile[i]);
+    for (i = 1; i < 32; i = i + 1) $dumpvars(1, `regFile[i]);
+    for (i = 0; i < 44; i = i + 1) $dumpvars(1, `memFile[i]);
 
     #100000;
     `assert(`wordAt(0), 4862); // the tenth Catalan number!

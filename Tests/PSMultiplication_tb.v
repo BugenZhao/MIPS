@@ -23,8 +23,8 @@ initial begin: test
 
     $dumpfile("wave.vcd");
     $dumpvars;
-    for (i = 1; i < 32; i++) $dumpvars(1, `regFile[i]);
-    for (i = 0; i < 16; i++) $dumpvars(1, `memFile[i]);
+    for (i = 1; i < 32; i = i + 1) $dumpvars(1, `regFile[i]);
+    for (i = 0; i < 16; i = i + 1) $dumpvars(1, `memFile[i]);
 
     `wordAt(0) = 111111;
     `wordAt(4) = 222222;

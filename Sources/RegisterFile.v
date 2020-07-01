@@ -30,7 +30,7 @@ wire readLo = opcode == `OPC_SPECIAL && funct == `FUN_MFLO;
 
 initial begin: init
     integer i;
-    for (i = 0; i < 32; i++) begin
+    for (i = 0; i < 32; i = i + 1) begin
         regFile[i] = 0;
     end
     lo = 0;

@@ -27,10 +27,10 @@ reg         valid [0:63];
 
 initial begin: init
     integer i, j;
-    for (i = 0; i < 64; i++) begin
+    for (i = 0; i < 64; i = i + 1) begin
         tags[i] = 0;
         valid[i] = 0;
-        for (j = 0; j < 4; j++) begin
+        for (j = 0; j < 4; j = j + 1) begin
             blocks[i][j] = 0;
         end
     end
