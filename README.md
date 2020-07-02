@@ -1,6 +1,6 @@
-# MIPS
+# Pipelined MIPS
 
-- [x] Basic Instructions
+- [x] 49 Instructions
 
   <details>
   <summary>Details</summary>
