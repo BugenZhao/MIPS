@@ -61,6 +61,8 @@
 
 - [x] Compile & Run Simple C Programs
 
+- [x] Multi-cycle Memory and Cache
+
 - [ ] Exception
 
 - [ ] Interrupt
